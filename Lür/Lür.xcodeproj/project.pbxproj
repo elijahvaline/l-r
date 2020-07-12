@@ -7,33 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28DD24B50D0E0002AB8A /* Fish.swift */; };
-		B6C79D4D24B67BFB00B8A3A9 /* FishCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */; };
-		B6CA12D92479C8F300FE235D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12D82479C8F300FE235D /* AppDelegate.swift */; };
-		B6CA12DB2479C8F300FE235D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12DA2479C8F300FE235D /* SceneDelegate.swift */; };
-		B6CA12DE2479C8F300FE235D /* lur.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12DC2479C8F300FE235D /* lur.xcdatamodeld */; };
-		B6CA12E02479C8F300FE235D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12DF2479C8F300FE235D /* ContentView.swift */; };
-		B6CA12E22479C8F600FE235D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E12479C8F600FE235D /* Assets.xcassets */; };
-		B6CA12E52479C8F600FE235D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E42479C8F600FE235D /* Preview Assets.xcassets */; };
-		B6CA12E82479C8F600FE235D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E62479C8F600FE235D /* LaunchScreen.storyboard */; };
+		B66B28C524B50AA30002AB8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28C424B50AA30002AB8A /* AppDelegate.swift */; };
+		B66B28C724B50AA30002AB8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28C624B50AA30002AB8A /* SceneDelegate.swift */; };
+		B66B28CA24B50AA30002AB8A /* Lu_r.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66B28C824B50AA30002AB8A /* Lu_r.xcdatamodeld */; };
+		B66B28CC24B50AA30002AB8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28CB24B50AA30002AB8A /* ContentView.swift */; };
+		B66B28CE24B50AA90002AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B66B28CD24B50AA90002AB8A /* Assets.xcassets */; };
+		B66B28D124B50AA90002AB8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B66B28D024B50AA90002AB8A /* Preview Assets.xcassets */; };
+		B66B28D424B50AA90002AB8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B66B28D224B50AA90002AB8A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B66B28DD24B50D0E0002AB8A /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
-		B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCheckpoint.swift; sourceTree = "<group>"; };
-		B6CA12D52479C8F300FE235D /* lur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lur.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6CA12D82479C8F300FE235D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6CA12DA2479C8F300FE235D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6CA12DD2479C8F300FE235D /* lur.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = lur.xcdatamodel; sourceTree = "<group>"; };
-		B6CA12DF2479C8F300FE235D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B6CA12E12479C8F600FE235D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B6CA12E42479C8F600FE235D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B6CA12E72479C8F600FE235D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B6CA12E92479C8F600FE235D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B66B28C124B50AA30002AB8A /* Lür.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lür.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B66B28C424B50AA30002AB8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B66B28C624B50AA30002AB8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B66B28C924B50AA30002AB8A /* Lu_r.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lu_r.xcdatamodel; sourceTree = "<group>"; };
+		B66B28CB24B50AA30002AB8A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B66B28CD24B50AA90002AB8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B66B28D024B50AA90002AB8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B66B28D324B50AA90002AB8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B66B28D524B50AA90002AB8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B6CA12D22479C8F300FE235D /* Frameworks */ = {
+		B66B28BE24B50AA30002AB8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,43 +39,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B6CA12CC2479C8F300FE235D = {
+		B66B28B824B50AA30002AB8A = {
 			isa = PBXGroup;
 			children = (
-				B6CA12D72479C8F300FE235D /* lur */,
-				B6CA12D62479C8F300FE235D /* Products */,
+				B66B28C324B50AA30002AB8A /* Lür */,
+				B66B28C224B50AA30002AB8A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B6CA12D62479C8F300FE235D /* Products */ = {
+		B66B28C224B50AA30002AB8A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6CA12D52479C8F300FE235D /* lur.app */,
+				B66B28C124B50AA30002AB8A /* Lür.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6CA12D72479C8F300FE235D /* lur */ = {
+		B66B28C324B50AA30002AB8A /* Lür */ = {
 			isa = PBXGroup;
 			children = (
-				B6CA12D82479C8F300FE235D /* AppDelegate.swift */,
-				B6CA12DA2479C8F300FE235D /* SceneDelegate.swift */,
-				B6CA12DF2479C8F300FE235D /* ContentView.swift */,
-				B66B28DD24B50D0E0002AB8A /* Fish.swift */,
-				B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */,
-				B6CA12E12479C8F600FE235D /* Assets.xcassets */,
-				B6CA12E62479C8F600FE235D /* LaunchScreen.storyboard */,
-				B6CA12E92479C8F600FE235D /* Info.plist */,
-				B6CA12DC2479C8F300FE235D /* lur.xcdatamodeld */,
-				B6CA12E32479C8F600FE235D /* Preview Content */,
+				B66B28C424B50AA30002AB8A /* AppDelegate.swift */,
+				B66B28C624B50AA30002AB8A /* SceneDelegate.swift */,
+				B66B28CB24B50AA30002AB8A /* ContentView.swift */,
+				B66B28CD24B50AA90002AB8A /* Assets.xcassets */,
+				B66B28D224B50AA90002AB8A /* LaunchScreen.storyboard */,
+				B66B28D524B50AA90002AB8A /* Info.plist */,
+				B66B28C824B50AA30002AB8A /* Lu_r.xcdatamodeld */,
+				B66B28CF24B50AA90002AB8A /* Preview Content */,
 			);
-			path = lur;
+			path = "Lür";
 			sourceTree = "<group>";
 		};
-		B6CA12E32479C8F600FE235D /* Preview Content */ = {
+		B66B28CF24B50AA90002AB8A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				B6CA12E42479C8F600FE235D /* Preview Assets.xcassets */,
+				B66B28D024B50AA90002AB8A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -87,39 +81,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B6CA12D42479C8F300FE235D /* lur */ = {
+		B66B28C024B50AA30002AB8A /* Lür */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6CA12EC2479C8F600FE235D /* Build configuration list for PBXNativeTarget "lur" */;
+			buildConfigurationList = B66B28D824B50AA90002AB8A /* Build configuration list for PBXNativeTarget "Lür" */;
 			buildPhases = (
-				B6CA12D12479C8F300FE235D /* Sources */,
-				B6CA12D22479C8F300FE235D /* Frameworks */,
-				B6CA12D32479C8F300FE235D /* Resources */,
+				B66B28BD24B50AA30002AB8A /* Sources */,
+				B66B28BE24B50AA30002AB8A /* Frameworks */,
+				B66B28BF24B50AA30002AB8A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = lur;
-			productName = lur;
-			productReference = B6CA12D52479C8F300FE235D /* lur.app */;
+			name = "Lür";
+			productName = "Lür";
+			productReference = B66B28C124B50AA30002AB8A /* Lür.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B6CA12CD2479C8F300FE235D /* Project object */ = {
+		B66B28B924B50AA30002AB8A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Elijah Valine";
 				TargetAttributes = {
-					B6CA12D42479C8F300FE235D = {
+					B66B28C024B50AA30002AB8A = {
 						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
-			buildConfigurationList = B6CA12D02479C8F300FE235D /* Build configuration list for PBXProject "lur" */;
+			buildConfigurationList = B66B28BC24B50AA30002AB8A /* Build configuration list for PBXProject "Lür" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,50 +121,48 @@
 				en,
 				Base,
 			);
-			mainGroup = B6CA12CC2479C8F300FE235D;
-			productRefGroup = B6CA12D62479C8F300FE235D /* Products */;
+			mainGroup = B66B28B824B50AA30002AB8A;
+			productRefGroup = B66B28C224B50AA30002AB8A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B6CA12D42479C8F300FE235D /* lur */,
+				B66B28C024B50AA30002AB8A /* Lür */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B6CA12D32479C8F300FE235D /* Resources */ = {
+		B66B28BF24B50AA30002AB8A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6CA12E82479C8F600FE235D /* LaunchScreen.storyboard in Resources */,
-				B6CA12E52479C8F600FE235D /* Preview Assets.xcassets in Resources */,
-				B6CA12E22479C8F600FE235D /* Assets.xcassets in Resources */,
+				B66B28D424B50AA90002AB8A /* LaunchScreen.storyboard in Resources */,
+				B66B28D124B50AA90002AB8A /* Preview Assets.xcassets in Resources */,
+				B66B28CE24B50AA90002AB8A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B6CA12D12479C8F300FE235D /* Sources */ = {
+		B66B28BD24B50AA30002AB8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */,
-				B6CA12D92479C8F300FE235D /* AppDelegate.swift in Sources */,
-				B6C79D4D24B67BFB00B8A3A9 /* FishCheckpoint.swift in Sources */,
-				B6CA12DE2479C8F300FE235D /* lur.xcdatamodeld in Sources */,
-				B6CA12E02479C8F300FE235D /* ContentView.swift in Sources */,
-				B6CA12DB2479C8F300FE235D /* SceneDelegate.swift in Sources */,
+				B66B28CA24B50AA30002AB8A /* Lu_r.xcdatamodeld in Sources */,
+				B66B28C524B50AA30002AB8A /* AppDelegate.swift in Sources */,
+				B66B28CC24B50AA30002AB8A /* ContentView.swift in Sources */,
+				B66B28C724B50AA30002AB8A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B6CA12E62479C8F600FE235D /* LaunchScreen.storyboard */ = {
+		B66B28D224B50AA90002AB8A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6CA12E72479C8F600FE235D /* Base */,
+				B66B28D324B50AA90002AB8A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -178,7 +170,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B6CA12EA2479C8F600FE235D /* Debug */ = {
+		B66B28D624B50AA90002AB8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,7 +230,7 @@
 			};
 			name = Debug;
 		};
-		B6CA12EB2479C8F600FE235D /* Release */ = {
+		B66B28D724B50AA90002AB8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -292,40 +284,40 @@
 			};
 			name = Release;
 		};
-		B6CA12ED2479C8F600FE235D /* Debug */ = {
+		B66B28D924B50AA90002AB8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"lur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Lür/Preview Content\"";
 				DEVELOPMENT_TEAM = QNG49J45ZU;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = lur/Info.plist;
+				INFOPLIST_FILE = "Lür/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Valine.lur;
+				PRODUCT_BUNDLE_IDENTIFIER = "Valine.Lu-r";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		B6CA12EE2479C8F600FE235D /* Release */ = {
+		B66B28DA24B50AA90002AB8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"lur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Lür/Preview Content\"";
 				DEVELOPMENT_TEAM = QNG49J45ZU;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = lur/Info.plist;
+				INFOPLIST_FILE = "Lür/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Valine.lur;
+				PRODUCT_BUNDLE_IDENTIFIER = "Valine.Lu-r";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -335,20 +327,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B6CA12D02479C8F300FE235D /* Build configuration list for PBXProject "lur" */ = {
+		B66B28BC24B50AA30002AB8A /* Build configuration list for PBXProject "Lür" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6CA12EA2479C8F600FE235D /* Debug */,
-				B6CA12EB2479C8F600FE235D /* Release */,
+				B66B28D624B50AA90002AB8A /* Debug */,
+				B66B28D724B50AA90002AB8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6CA12EC2479C8F600FE235D /* Build configuration list for PBXNativeTarget "lur" */ = {
+		B66B28D824B50AA90002AB8A /* Build configuration list for PBXNativeTarget "Lür" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6CA12ED2479C8F600FE235D /* Debug */,
-				B6CA12EE2479C8F600FE235D /* Release */,
+				B66B28D924B50AA90002AB8A /* Debug */,
+				B66B28DA24B50AA90002AB8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -356,17 +348,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B6CA12DC2479C8F300FE235D /* lur.xcdatamodeld */ = {
+		B66B28C824B50AA30002AB8A /* Lu_r.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B6CA12DD2479C8F300FE235D /* lur.xcdatamodel */,
+				B66B28C924B50AA30002AB8A /* Lu_r.xcdatamodel */,
 			);
-			currentVersion = B6CA12DD2479C8F300FE235D /* lur.xcdatamodel */;
-			path = lur.xcdatamodeld;
+			currentVersion = B66B28C924B50AA30002AB8A /* Lu_r.xcdatamodel */;
+			path = Lu_r.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = B6CA12CD2479C8F300FE235D /* Project object */;
+	rootObject = B66B28B924B50AA30002AB8A /* Project object */;
 }
