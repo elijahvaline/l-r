@@ -1,0 +1,38 @@
+{
+  "name": "Lur",
+  "version": "1.0.0",
+  "description": "Server for Lur app",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "forever": "^0.15.3",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.0",
+    "mime": "^1.3.4",
+    "multer": "^1.3.0",
+    "net": "^1.0.2",
+    "socket.io": "^1.5.0",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elijahvaline/l-r.git"
+  },
+  "keywords": [
+    "Lur"
+  ],
+  "author": "Elijah Valine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elijahvaline/l-r.git/issues"
+  },
+  "homepage": "https://github.com/elijahvaline/l-r.git#readme"
+}

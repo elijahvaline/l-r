@@ -1,0 +1,3 @@
+*.db
+patient-records.db
+node_modules
