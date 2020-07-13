@@ -9,6 +9,6 @@ var server = app.listen(8081, function () {
 })
 
 app.get('/', function (req, res) {
-   res.send("my string heres");
+   res.send("Hello There");
 })
 
