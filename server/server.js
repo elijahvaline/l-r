@@ -16,6 +16,6 @@ app.get('/', function (req, res) {
 
 app.get('/version', function (req, res) {
     res.send("v1.0.0");
-    console.log("Hello there")
+    console.log("v1.0.0")
 })
 
