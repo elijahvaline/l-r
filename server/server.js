@@ -12,3 +12,7 @@ app.get('/', function (req, res) {
    res.send("Hello There Again");
 })
 
+app.get('/version', function (req, res) {
+   res.send("v1.0.0");
+})
+

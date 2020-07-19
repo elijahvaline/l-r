@@ -16,6 +16,7 @@
 		B6CA12E22479C8F600FE235D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E12479C8F600FE235D /* Assets.xcassets */; };
 		B6CA12E52479C8F600FE235D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E42479C8F600FE235D /* Preview Assets.xcassets */; };
 		B6CA12E82479C8F600FE235D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6CA12E62479C8F600FE235D /* LaunchScreen.storyboard */; };
+		B6D769EB24C503C900427672 /* ServerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D769EA24C503C900427672 /* ServerUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B6CA12E42479C8F600FE235D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6CA12E72479C8F600FE235D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6CA12E92479C8F600FE235D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6D769EA24C503C900427672 /* ServerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				B6CA12E92479C8F600FE235D /* Info.plist */,
 				B6CA12DC2479C8F300FE235D /* lur.xcdatamodeld */,
 				B6CA12E32479C8F600FE235D /* Preview Content */,
+				B6D769EA24C503C900427672 /* ServerUtils.swift */,
 			);
 			path = lur;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */,
 				B6CA12D92479C8F300FE235D /* AppDelegate.swift in Sources */,
 				B6C79D4D24B67BFB00B8A3A9 /* FishCheckpoint.swift in Sources */,
+				B6D769EB24C503C900427672 /* ServerUtils.swift in Sources */,
 				B6CA12DE2479C8F300FE235D /* lur.xcdatamodeld in Sources */,
 				B6CA12E02479C8F300FE235D /* ContentView.swift in Sources */,
 				B6CA12DB2479C8F300FE235D /* SceneDelegate.swift in Sources */,
