@@ -10,9 +10,12 @@ var server = app.listen(8081, function () {
 
 app.get('/', function (req, res) {
    res.send("Hello There Again");
+   console.log("Hello there")
+    
 })
 
 app.get('/version', function (req, res) {
-   res.send("v1.0.0");
+    res.send("v1.0.0");
+    console.log("Hello there")
 })
 

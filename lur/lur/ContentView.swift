@@ -44,13 +44,22 @@ struct ContentView: View {
                 Text(serverResponse)
                 Button(action: {
                 let server = ServerUtils()
-                    server.getServerVersion(returnWith: { response in
+                    server.getServerHelloWorld(returnWith: { response in
                         self.serverResponse = response
                     })
                }) {
-                   Text("Run on server")
+                   Text("HelloWorld")
                }
-                
+
+                 Button(action: {
+                 let server = ServerUtils()
+                     server.getServerVersion(returnWith: { response in
+                         self.serverResponse = response
+                     })
+                }) {
+                    Text("GetVersion")
+                }
+
             }
         }
       
