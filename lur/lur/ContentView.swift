@@ -43,8 +43,7 @@ struct ContentView: View {
             HStack {
                 Text(serverResponse)
                 Button(action: {
-                let server = ServerUtils()
-                    server.getServerHelloWorld(returnWith: { response in
+                    ServerUtils.getServerHelloWorld(returnWith: { response in
                         self.serverResponse = response
                     })
                }) {
@@ -52,13 +51,19 @@ struct ContentView: View {
                }
 
                  Button(action: {
-                 let server = ServerUtils()
-                     server.getServerVersion(returnWith: { response in
+
+                     ServerUtils.getServerVersion(returnWith: { response in
                          self.serverResponse = response
                      })
                 }) {
                     Text("GetVersion")
                 }
+                
+                Button(action: {
+                    ServerUtils.addFish()
+                  }) {
+                      Text("AddFish")
+                  }
 
             }
         }
