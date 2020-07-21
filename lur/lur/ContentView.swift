@@ -10,26 +10,6 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-struct MapViewAdvance: UIViewRepresentable {
-    
-  @Binding var checkpoints: [FishCheckpoint]
-
-    func makeUIView(context: Context) -> MKMapView {
-       MKMapView()
-  }
-  
-  func updateUIView(_ uiView: MKMapView, context: Context) {
-    
-    uiView.delegate = context.coordinator
-    uiView.addAnnotations(checkpoints)
-    
-  }
-    
-    func makeCoordinator() -> MapViewCoordinator {
-        MapViewCoordinator(self)
-    }
-
-}
 
 struct ContentView: View {
 
@@ -51,7 +31,7 @@ struct ContentView: View {
             self.locationManager.location!.coordinate :
             CLLocationCoordinate2D()
 
-           return  VStack {
+           return VStack {
             
              ZStack{
                 MapViewAdvance(checkpoints: $checkpoints)
@@ -99,42 +79,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-class MapViewCoordinator: NSObject, MKMapViewDelegate{
-    
-    var mapViewController: MapViewAdvance
-    
-    init(_ control: MapViewAdvance){
-        
-        self.mapViewController = control
-    }
-    func mapView(_ mapView: MKMapView, viewFor
-        annotation: MKAnnotation) -> MKAnnotationView?{
-        
-        let identifier = "Hello"
-//
-//       var annotationView = MKAnnotationView()
-//               annotationView.canShowCallout = true
-//
-//
-//       annotationView.canShowCallout = true
-//       annotationView.image = UIImage(named: "fish")
-
-//        
-
-        var annotationView = MKMarkerAnnotationView()
-                   annotationView.canShowCallout = true
-
-
-            annotationView.markerTintColor = .some(.systemBlue)
-            annotationView.glyphImage = UIImage(named: "fish")
-
-
-        
-        annotationView.clusteringIdentifier = identifier
-        
-       return annotationView
-    }
-}
-
 
