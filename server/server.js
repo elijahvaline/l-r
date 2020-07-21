@@ -25,13 +25,24 @@ app.get('/', function (req, res) {
 app.get('/version', function (req, res) {
     res.send("v1.0.0");
     console.log("v1.0.0")
+    
 })
 
 
 /// DO WORK HERE
 app.get('/getFish', function (req, res) {
-    res.send("v1.0.0");
-    console.log("v1.0.0")
+    
+    var db = new sqlite3.Database(file);
+    db.serialize(function() {
+        var sql = "SELECT id, date, latitude, longitude, size, type FROM fish";
+        db.all(sql, function(err, rows) {
+            var fish = {"fish" : rows}
+//            res.send(JSON.stringify(fish));
+        
+            console.log(JSON.stringify(rows));
+        });
+    });
+    db.close();
 })
 
 app.post('/addFish', jsonParser, function(req, response) {

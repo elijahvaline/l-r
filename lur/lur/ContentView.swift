@@ -47,11 +47,15 @@ struct ContentView: View {
             HStack {
                 Text(serverResponse)
                 Button(action: {
-                    ServerUtils.getServerHelloWorld(returnWith: { response in
-                        self.serverResponse = response
+//                    ServerUtils.getServerHelloWorld(returnWith: { response in
+//                        self.serverResponse = response
+                        ServerUtils.getFish(returnWith:  { response in
+                           
+                            
+                        
                     })
                }) {
-                   Text("HelloWorld")
+                   Text("GetFish")
                }
 
                  Button(action: {

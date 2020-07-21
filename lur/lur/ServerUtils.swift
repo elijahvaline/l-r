@@ -9,43 +9,110 @@
 import Foundation
 
 
+struct DataSet: Decodable{
+    
+    var data: [Fish]
+    
+    struct Fish: Decodable{
+        
+        let id: Int
+        let date: String
+        let latitude: Double
+        let longitude: Double
+        let size: Int
+        let type: Int
+        
+        init(from decoder: Decoder) throws {
+            
+            var container = try decoder.unkeyedContainer()
+            date = try container.decode(String.self)
+            id = try container.decode(Int.self)
+            latitude = try container.decode(Double.self)
+            longitude = try container.decode(Double.self)
+            size = try container.decode(Int.self)
+            type = try container.decode(Int.self)
+            
+        }
+        
+    }
+    
+}
+
 class ServerUtils {
     
-    static let serverUrl = "http://192.168.86.24:8081";
-
-//      static let serverUrl = "http://192.168.86.36:8081";
+    //    static let serverUrl = "http://192.168.86.24:8081";
+    
+    static let serverUrl = "http://192.168.86.36:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
         if let url = URL(string: serverUrl) {
             let task = session.dataTask(with: url, completionHandler: { data, response, error in
-            // Check the response
-                    print(error)
-                    print(response)
+                // Check the response
+                print(error)
+                print(response)
                 if let dataString = String(data: data!, encoding: .utf8) {
-                     returnWith(dataString)
+                    returnWith(dataString)
                 }
-               
+                
             })
             task.resume()
         }
     }
     
     static func getServerVersion(returnWith: @escaping (String)->()) {
-           let session = URLSession.shared
-           if let url = URL(string: serverUrl + "/version") {
-               let task = session.dataTask(with: url, completionHandler: { data, response, error in
-               // Check the response
-                       print(error)
-                       print(response)
-                   if let dataString = String(data: data!, encoding: .utf8) {
-                        returnWith(dataString)
-                   }
-                  
-               })
-               task.resume()
-           }
-       }
+        let session = URLSession.shared
+        if let url = URL(string: serverUrl + "/version") {
+            let task = session.dataTask(with: url, completionHandler: { data, response, error in
+                // Check the response
+                print(error)
+                print(response)
+                if let dataString = String(data: data!, encoding: .utf8) {
+                    returnWith(dataString)
+                }
+                
+            })
+            task.resume()
+        }
+    }
+    
+    static func getFish(returnWith: @escaping (DataSet)->()) {
+        
+        
+        let session = URLSession.shared
+        let decoder = JSONDecoder()
+        
+      
+        if let url = URL(string: serverUrl + "/getFish") {
+            
+            
+            
+            let task = session.dataTask(with: url, completionHandler: { data1, response, error in
+                print("here")
+                
+                print(error)
+                print(response)
+                
+                if let dataString = String(data: data1!, encoding: .utf8) {
+                    print(dataString)
+                    
+                    do {
+                        
+                        let fishSet = try decoder.decode(DataSet.self, from: Data(dataString.utf8))
+                        returnWith(fishSet)
+
+                    }
+                        
+                    catch let jsonError {
+                        print("Error Serializing JSON", jsonError)
+                    }
+                }
+                
+            })
+            print("notThere")
+            task.resume()
+        }
+    }
     
     static func addFish(){
         // prepare json data
@@ -55,19 +122,19 @@ class ServerUtils {
                                    "longitude": 1.0,
                                    "size" : 1,
                                    "type": 2]
-
+        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-
+        
         // create post request
         let url = URL(string: serverUrl + "/addFish")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         // insert json data to the request
         request.httpBody = jsonData
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "No data")
@@ -78,7 +145,7 @@ class ServerUtils {
                 print(responseJSON)
             }
         }
-
+        
         task.resume()
     }
 }
