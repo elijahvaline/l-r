@@ -8,19 +8,21 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapViewAdvance: UIViewRepresentable {
-  @Binding var checkpoints: [FishCheckpoint]
-  
-  func makeUIView(context: Context) -> MKMapView {
-    MKMapView()
     
+  @Binding var checkpoints: [FishCheckpoint]
+
+    func makeUIView(context: Context) -> MKMapView {
+       MKMapView()
   }
   
   func updateUIView(_ uiView: MKMapView, context: Context) {
     
     uiView.delegate = context.coordinator
     uiView.addAnnotations(checkpoints)
+    
   }
     
     func makeCoordinator() -> MapViewCoordinator {
@@ -30,16 +32,38 @@ struct MapViewAdvance: UIViewRepresentable {
 }
 
 struct ContentView: View {
+
+
     @State var checkpoints: [FishCheckpoint] = [
         FishCheckpoint(title: "Da Nang", subtitle: "Hole", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
-        FishCheckpoint(title: "Ha Noi", subtitle: "Hello THere", coordinate: .init(latitude: 21.027763, longitude: 105.834160))
+        FishCheckpoint(title: "Ha Noi", subtitle: "Hello THere", coordinate: .init(latitude: 21.027763, longitude: 105.834160)),
+        
+        FishCheckpoint(title: "hello", subtitle: "Hole", coordinate: .init(latitude: 45.047079, longitude: 78.206230)),
+        FishCheckpoint(title: "Ha Noi", subtitle: "Hello THere", coordinate: .init(latitude: 41.027763, longitude: 70.834160))
     ]
-  
-    @State var serverResponse = "hello"
-    var body: some View {
-        VStack {
 
-            MapViewAdvance(checkpoints: $checkpoints)
+    @State var serverResponse = "hello"
+    @ObservedObject private var locationManager = LocationManager()
+    
+    var body: some View {
+        
+        let coordinate = self.locationManager.location != nil ?
+            self.locationManager.location!.coordinate :
+            CLLocationCoordinate2D()
+
+           return  VStack {
+            
+             ZStack{
+                MapViewAdvance(checkpoints: $checkpoints)
+                                                 .edgesIgnoringSafeArea(.all)
+                Text("\(coordinate.latitude),  \(coordinate.longitude)")
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(10)
+                
+            }
+               
             HStack {
                 Text(serverResponse)
                 Button(action: {
@@ -63,11 +87,9 @@ struct ContentView: View {
                     ServerUtils.addFish()
                   }) {
                       Text("AddFish")
-                  }
-
+                }
             }
         }
-      
     }
 }
 
@@ -96,18 +118,21 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
 //
 //
 //       annotationView.canShowCallout = true
-//       annotationView.image = UIImage(named: "Bluefish")
+//       annotationView.image = UIImage(named: "fish")
+
 //        
-//
+
         var annotationView = MKMarkerAnnotationView()
                    annotationView.canShowCallout = true
 
 
             annotationView.markerTintColor = .some(.systemBlue)
-            annotationView.glyphImage = UIImage(named: "Bluefish")
+            annotationView.glyphImage = UIImage(named: "fish")
+
 
         
         annotationView.clusteringIdentifier = identifier
+        
        return annotationView
     }
 }
