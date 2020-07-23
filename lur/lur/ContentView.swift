@@ -30,6 +30,8 @@ struct ContentView: View {
         let coordinate = self.locationManager.location != nil ?
             self.locationManager.location!.coordinate :
             CLLocationCoordinate2D()
+        
+        
 
            return VStack {
             
@@ -68,9 +70,24 @@ struct ContentView: View {
                 }
                 
                 Button(action: {
-                    ServerUtils.addFish()
+                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: 1, fishSize: 1)
+                    print("ok")
                   }) {
                       Text("AddFish")
+                }
+                
+                Button(action: {
+                    print("Delete tapped!")
+                }) {
+                        Image(systemName: "plus")
+                            .font(.title)
+                        
+                    
+                    .frame(minWidth: 0, maxWidth: 40)
+                    .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                    .cornerRadius(40)
                 }
             }
         }

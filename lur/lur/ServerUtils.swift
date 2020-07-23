@@ -39,9 +39,9 @@ struct DataSet: Decodable{
 }
 
 class ServerUtils {
-    
-    //    static let serverUrl = "http://192.168.86.24:8081";
-    
+        //pi
+//        static let serverUrl = "http://192.168.86.24:8081";
+    //mac
     static let serverUrl = "http://192.168.86.36:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
@@ -114,14 +114,19 @@ class ServerUtils {
         }
     }
     
-    static func addFish(){
+    static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:Int, fishSize:Int ){
         // prepare json data
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
         
-        let json: [String: Any] = ["date": "1/1/2020",
-                                   "latitude": 1,
-                                   "longitude": 1.0,
-                                   "size" : 1,
-                                   "type": 2]
+        let todaysDate:String = formatter.string(from: today)
+        
+        let json: [String: Any] = ["date": todaysDate,
+                                   "latitude": fishLatitude,
+                                   "longitude": fishLongitude,
+                                   "size" : fishSize,
+                                   "type": fishType]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
