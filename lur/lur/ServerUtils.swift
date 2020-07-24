@@ -9,38 +9,23 @@
 import Foundation
 
 
-struct DataSet: Decodable{
+struct DataSet: Decodable {
     
-    var data: [Fish]
-    
-    struct Fish: Decodable{
-        
+    struct SingleFish: Decodable{
         let id: Int
         let date: String
         let latitude: Double
         let longitude: Double
         let size: Int
         let type: Int
-        
-        init(from decoder: Decoder) throws {
-            
-            var container = try decoder.unkeyedContainer()
-            date = try container.decode(String.self)
-            id = try container.decode(Int.self)
-            latitude = try container.decode(Double.self)
-            longitude = try container.decode(Double.self)
-            size = try container.decode(Int.self)
-            type = try container.decode(Int.self)
-            
-        }
-        
     }
     
+    let fish: [SingleFish]
 }
 
 class ServerUtils {
-        //pi
-//        static let serverUrl = "http://192.168.86.24:8081";
+    //pi
+    //    static let serverUrl = "http://192.168.86.24:8081";
     //mac
     static let serverUrl = "http://192.168.86.36:8081";
     
@@ -82,7 +67,7 @@ class ServerUtils {
         let session = URLSession.shared
         let decoder = JSONDecoder()
         
-      
+        
         if let url = URL(string: serverUrl + "/getFish") {
             
             
@@ -100,7 +85,7 @@ class ServerUtils {
                         
                         let fishSet = try decoder.decode(DataSet.self, from: Data(dataString.utf8))
                         returnWith(fishSet)
-
+                        
                     }
                         
                     catch let jsonError {

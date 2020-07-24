@@ -25,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		B65BA93F24CA464400B6A0D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B65BA94124CA6E3100B6A0D6 /* lur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lur.entitlements; sourceTree = "<group>"; };
 		B66B28DD24B50D0E0002AB8A /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
 		B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCheckpoint.swift; sourceTree = "<group>"; };
 		B6CA12D52479C8F300FE235D /* lur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lur.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +73,7 @@
 		B6CA12D72479C8F300FE235D /* lur */ = {
 			isa = PBXGroup;
 			children = (
+				B65BA94124CA6E3100B6A0D6 /* lur.entitlements */,
 				B6D769F324C686E800427672 /* Views */,
 				B6D769EE24C6839D00427672 /* Coordinators */,
 				B6CA12D82479C8F300FE235D /* AppDelegate.swift */,
@@ -332,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lur/lur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"lur/Preview Content\"";
 				DEVELOPMENT_TEAM = QNG49J45ZU;
@@ -343,6 +346,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Valine.lur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -352,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lur/lur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"lur/Preview Content\"";
 				DEVELOPMENT_TEAM = QNG49J45ZU;
@@ -363,6 +368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Valine.lur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

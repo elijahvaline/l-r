@@ -37,7 +37,7 @@ app.get('/getFish', function (req, res) {
         var sql = "SELECT id, date, latitude, longitude, size, type FROM fish";
         db.all(sql, function(err, rows) {
             var fish = {"fish" : rows}
-//            res.send(JSON.stringify(fish));
+            res.send(JSON.stringify(fish));
         
             console.log(JSON.stringify(rows));
         });
