@@ -11,23 +11,32 @@ import Foundation
 
 struct DataSet: Decodable {
     
-    struct SingleFish: Decodable{
-        let id: Int
-        let date: String
-        let latitude: Double
-        let longitude: Double
-        let size: Int
-        let type: Int
-    }
+//    struct SingleFish: Decodable{
+//        let id: Int
+//        let date: String
+//        let latitude: Double
+//        let longitude: Double
+//        let size: Int
+//        let type: Int
+//    }
     
     let fish: [SingleFish]
 }
 
+struct SingleFish: Decodable{
+    let id: Int
+    let date: String
+    let latitude: Double
+    let longitude: Double
+    let size: Int
+    let type: Int
+}
+
 class ServerUtils {
     //pi
-    //    static let serverUrl = "http://192.168.86.24:8081";
+        static let serverUrl = "http://192.168.86.24:8081";
     //mac
-    static let serverUrl = "http://192.168.86.36:8081";
+//    static let serverUrl = "http://192.168.86.36:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
@@ -85,6 +94,7 @@ class ServerUtils {
                         
                         let fishSet = try decoder.decode(DataSet.self, from: Data(dataString.utf8))
                         returnWith(fishSet)
+                        
                         
                     }
                         
