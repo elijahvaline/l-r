@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B65BA94024CA464400B6A0D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65BA93F24CA464400B6A0D6 /* HomeView.swift */; };
 		B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28DD24B50D0E0002AB8A /* Fish.swift */; };
+		B6C46DCD24CF5E3F00258A9B /* NewFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C46DCC24CF5E3F00258A9B /* NewFishView.swift */; };
 		B6C79D4D24B67BFB00B8A3A9 /* FishCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */; };
 		B6CA12D92479C8F300FE235D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12D82479C8F300FE235D /* AppDelegate.swift */; };
 		B6CA12DB2479C8F300FE235D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA12DA2479C8F300FE235D /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		B65BA93F24CA464400B6A0D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B65BA94124CA6E3100B6A0D6 /* lur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lur.entitlements; sourceTree = "<group>"; };
 		B66B28DD24B50D0E0002AB8A /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
+		B6C46DCC24CF5E3F00258A9B /* NewFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFishView.swift; sourceTree = "<group>"; };
 		B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCheckpoint.swift; sourceTree = "<group>"; };
 		B6CA12D52479C8F300FE235D /* lur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CA12D82479C8F300FE235D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				B6D769F424C686F600427672 /* MapViewAdvance.swift */,
 				B65BA93F24CA464400B6A0D6 /* HomeView.swift */,
+				B6C46DCC24CF5E3F00258A9B /* NewFishView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				B6D769EB24C503C900427672 /* ServerUtils.swift in Sources */,
 				B6D769F224C686B000427672 /* MapViewCoordinator.swift in Sources */,
 				B6D769ED24C63E5400427672 /* LocationManager.swift in Sources */,
+				B6C46DCD24CF5E3F00258A9B /* NewFishView.swift in Sources */,
 				B6CA12DE2479C8F300FE235D /* lur.xcdatamodeld in Sources */,
 				B65BA94024CA464400B6A0D6 /* HomeView.swift in Sources */,
 				B6CA12E02479C8F300FE235D /* ContentView.swift in Sources */,

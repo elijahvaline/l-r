@@ -19,7 +19,7 @@ struct ContentView: View {
     @State var emptyCheckpoints: [FishCheckpoint] = []
     @State var serverResponse = "hello"
     @ObservedObject private var locationManager = LocationManager()
-    let fishy:Color = Color(red: 38/255, green: 138/255, blue: 255/255)
+    let fishy:Color = Color(red: 39/255, green: 113/255, blue: 255/255)
     
     
     
@@ -52,6 +52,10 @@ struct ContentView: View {
                             
                         }
                         coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
+                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
+                        self.checkpoints.append(curCheck)
+                        
+                        coor = CLLocationCoordinate2D(latitude: 76.0, longitude: 48)
                         curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
                         self.checkpoints.append(curCheck)
                         
@@ -126,7 +130,7 @@ struct ContentView: View {
                 .padding(.horizontal, (screenWidth/2) - 90)
                
                 
-                NavigationLink(destination: SomeView()) {
+                NavigationLink(destination: NewFishView()) {
                               Image(systemName: "umbrella.fill")
                     }.foregroundColor(.white)
                 .font(.system(size: 35))

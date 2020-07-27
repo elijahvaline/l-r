@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Bluefish copy.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Bluefish copy-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Bluefish copy-2.png",
+      "filename" : "school copy.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
