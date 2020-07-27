@@ -14,6 +14,7 @@ import CoreLocation
 struct ContentView: View {
     
     @State var checkpoints: [FishCheckpoint] = []
+    @State var emptyCheckpoints: [FishCheckpoint] = []
     @State var serverResponse = "hello"
     @ObservedObject private var locationManager = LocationManager()
     let fishy:Color = Color(red: 38/255, green: 138/255, blue: 255/255)
@@ -25,47 +26,9 @@ struct ContentView: View {
         return VStack {
             
             ZStack{
-                
                 MapViewAdvance(checkpoints: $checkpoints)
-                               .edgesIgnoringSafeArea(.all)
-                               .onAppear() {
-                                   
-                                   var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                                   var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor)
-                                   
-                                   ServerUtils.getFish(returnWith:  { response in
-                                       let fishSet:DataSet = response
-                                       let size = fishSet.fish.count
-                                       var curFish:SingleFish
-                                       
-                                       for n in 0...size-1 {
-                                           print("Here")
-                                           curFish = fishSet.fish[n]
-                                           coor.latitude = curFish.latitude
-                                           coor.longitude = curFish.longitude
-                                           curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor)
-                                           self.checkpoints.append(curCheck)
-                                           
-                                       }
-                                       coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
-                                       curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
-                                       self.checkpoints.append(curCheck)
-                                       
-                                   })
-                                   
-                           }
-                
-                
-            }
-            
-           
-            
-            
-           
-       
-                HStack(){
-                    
-                    Button(action: {
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear() {
                         var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
                         var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor)
                         
@@ -74,9 +37,9 @@ struct ContentView: View {
                             let size = fishSet.fish.count
                             var curFish:SingleFish
                             
-                            for n in 0...size-1 {
+                            for fish in fishSet.fish {
                                 print("Here")
-                                curFish = fishSet.fish[n]
+                                curFish = fish
                                 coor.latitude = curFish.latitude
                                 coor.longitude = curFish.longitude
                                 curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor)
@@ -88,36 +51,76 @@ struct ContentView: View {
                             self.checkpoints.append(curCheck)
                             
                         })
-                    }) {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    }
-                    .padding(.trailing, 300.0)
+                        
+                }
+            }
+            
+            HStack(){
+                
+                Button(action: {
+                    var emptyCheckpoints: [FishCheckpoint] = []
+                    var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor)
                     
                     
-                    Button(action: {
-                        
-                        let coordinate = self.locationManager.location != nil ?
-                            self.locationManager.location!.coordinate :
-                            CLLocationCoordinate2D()
-                        
-                        ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: 1, fishSize: 1)
-                        print("ok")
-                        
-                        print("Added")
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.title)
-                            .foregroundColor(.white)
-                        
-                        
-                    }
-                    .padding(.leading, 0.0)
+                    print("refresh")
+                    print(self.checkpoints.count)
+
                     
-                }.padding(.top).edgesIgnoringSafeArea(.bottom)
+                    
+                    ServerUtils.getFish(returnWith:  { response in
+                        self.checkpoints.removeAll()
+                        let fishSet:DataSet = response
+                        let checkpointSize = self.checkpoints.count
+                        print(fishSet.fish.count)
+                        
+                        let size = fishSet.fish.count
+                        var curFish:SingleFish
+                        
+                        for fish in fishSet.fish {
+                            print("Here")
+                            curFish = fish
+                            coor.latitude = curFish.latitude
+                            coor.longitude = curFish.longitude
+                            curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor)
+
+                            self.checkpoints.append(curCheck)
+                        }
+                        coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
+                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
+                        self.checkpoints.append(curCheck)
+                        
+                        
+                    })
+                }) {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title)
+                        .foregroundColor(.white)
+                }.padding(.trailing, 300.0)
                 
                 
+                Button(action: {
+                    
+                    let coordinate = self.locationManager.location != nil ?
+                        self.locationManager.location!.coordinate :
+                        CLLocationCoordinate2D()
+                    
+                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: 1, fishSize: 1)
+                    print("ok")
+                    
+                    print("Added")
+                }) {
+                    Image(systemName: "plus")
+                        .font(.title)
+                        .foregroundColor(.white)
+                    
+                    
+                }
+                .padding(.leading, 0.0)
+                
+            }.padding(.top).edgesIgnoringSafeArea(.bottom)
+            
+            
             
             
         }

@@ -24,6 +24,8 @@ struct MapViewAdvance: UIViewRepresentable {
   func updateUIView(_ uiView: MKMapView, context: Context) {
     
     uiView.delegate = context.coordinator
+
+    uiView.removeAnnotations(uiView.annotations)
     uiView.addAnnotations(checkpoints)
     
   }
