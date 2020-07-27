@@ -23,7 +23,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor
         annotation: MKAnnotation) -> MKAnnotationView?{
         
-        var annotationView = MKAnnotationView()
+        let annotationView = MKAnnotationView()
         if (annotation.title == "My Location"){
             return nil
         }
@@ -36,12 +36,13 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                  annotationView.clusteringIdentifier = identifier
         
     
-        if let cluster = annotation as? MKClusterAnnotation {
-            annotationView.image = UIImage(named: "Bluefish")
-        } else{
-             annotationView.image = UIImage(named: "Fish")
-        }
-        return annotationView
+      if let cluster = annotation as? MKClusterAnnotation {
+                  annotationView.image = UIImage(named: "Bluefish")
+              } else{
+                   annotationView.image = UIImage(named: "Fish")
+              }
+              return annotationView
+
 
         
         //
