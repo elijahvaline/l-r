@@ -28,15 +28,16 @@ struct SingleFish: Decodable{
     let date: String
     let latitude: Double
     let longitude: Double
-    let size: Int
-    let type: Int
+    let size: String
+    let type: String
+    let color: String
 }
 
 class ServerUtils {
     //pi
-        static let serverUrl = "http://192.168.86.24:8081";
+//        static let serverUrl = "http://192.168.86.24:8081";
     //mac
-//    static let serverUrl = "http://192.168.86.36:8081";
+    static let serverUrl = "http://192.168.86.36:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
@@ -110,7 +111,7 @@ class ServerUtils {
         }
     }
     
-    static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:Int, fishSize:Int ){
+    static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:String, fishSize:String, fishColor:String ){
         // prepare json data
         let today = Date()
         let formatter = DateFormatter()
@@ -122,7 +123,8 @@ class ServerUtils {
                                    "latitude": fishLatitude,
                                    "longitude": fishLongitude,
                                    "size" : fishSize,
-                                   "type": fishType]
+                                   "type": fishType,
+                                   "color": fishColor]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         

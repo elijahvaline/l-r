@@ -35,7 +35,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
                 .onAppear() {
                     var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor)
+                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue")
                     
                     ServerUtils.getFish(returnWith:  { response in
                         let fishSet:DataSet = response
@@ -47,16 +47,16 @@ struct ContentView: View {
                             curFish = fish
                             coor.latitude = curFish.latitude
                             coor.longitude = curFish.longitude
-                            curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor)
+                            curCheck = FishCheckpoint(title: curFish.type, subtitle: "Date", coordinate: coor, color: curFish.color)
                             self.checkpoints.append(curCheck)
                             
                         }
                         coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
+                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue")
                         self.checkpoints.append(curCheck)
                         
                         coor = CLLocationCoordinate2D(latitude: 76.0, longitude: 48)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
+                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue")
                         self.checkpoints.append(curCheck)
                         
                     })
@@ -69,7 +69,7 @@ struct ContentView: View {
                 Button(action: {
                     var _: [FishCheckpoint] = []
                     var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor)
+                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue")
                     
                     
                     print("refresh")
@@ -91,12 +91,12 @@ struct ContentView: View {
                             curFish = fish
                             coor.latitude = curFish.latitude
                             coor.longitude = curFish.longitude
-                            curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor)
+                            curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor, color: curFish.color)
                             
                             self.checkpoints.append(curCheck)
                         }
                         coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor)
+                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue" )
                         self.checkpoints.append(curCheck)
                         
                         
@@ -115,7 +115,7 @@ struct ContentView: View {
                         self.locationManager.location!.coordinate :
                         CLLocationCoordinate2D()
                     
-                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: 1, fishSize: 1)
+                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: "Walleye", fishSize: "Huge", fishColor: "Blue")
                     print("ok")
                     
                     print("Added")

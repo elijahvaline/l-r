@@ -34,7 +34,7 @@ app.get('/getFish', function (req, res) {
     
     var db = new sqlite3.Database(file);
     db.serialize(function() {
-        var sql = "SELECT id, date, latitude, longitude, size, type FROM fish";
+        var sql = "SELECT id, date, latitude, longitude, size, type, color FROM fish";
         db.all(sql, function(err, rows) {
             var fish = {"fish" : rows}
             res.send(JSON.stringify(fish));
@@ -55,9 +55,10 @@ app.post('/addFish', jsonParser, function(req, response) {
     var longitude = req.body.longitude
     var size = req.body.size
     var type = req.body.type
+    var color = req.body.color
 
     db.serialize(function() {
-        var sql =  "INSERT INTO fish (id, date, latitude, longitude, size, type) VALUES (NULL, \"" + date + "\", \"" +  latitude + "\", \"" +  longitude + "\", \"" + size + "\", \"" +  type + "\")";
+        var sql =  "INSERT INTO fish (id, date, latitude, longitude, size, type) VALUES (NULL, \"" + date + "\", \"" +  latitude + "\", \"" +  longitude + "\", \"" + size + "\", \"" +  type + "\", \"" +  color + "\")";
         db.run(sql);
     });
     
@@ -72,7 +73,11 @@ var db = new sqlite3.Database(file);
 db.serialize(function() {
   if(!exists) {
   
-    var createTable = "CREATE TABLE fish (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, latitude REAL, longitude REAL, size INTEGER, type INTEGER)"
+//    var createTable = "CREATE TABLE fish (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, latitude REAL, longitude REAL, size INTEGER, type INTEGER,)"
+      
+      var createTable = "CREATE TABLE fish (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, latitude REAL, longitude REAL, size TEXT, type TEXT, color TEXT)"
+      
+      
 
     db.run(createTable);
 
