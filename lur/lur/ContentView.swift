@@ -26,120 +26,138 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView{
-        
-        return VStack {
             
-            
-            
-            MapViewAdvance(checkpoints: $checkpoints)
-                .edgesIgnoringSafeArea(.all)
-                .onAppear() {
-                    var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue")
-                    
-                    ServerUtils.getFish(returnWith:  { response in
-                        let fishSet:DataSet = response
-                        _ = fishSet.fish.count
-                        var curFish:SingleFish
-                        
-                        for fish in fishSet.fish {
-                            print("Here")
-                            curFish = fish
-                            coor.latitude = curFish.latitude
-                            coor.longitude = curFish.longitude
-                            curCheck = FishCheckpoint(title: curFish.type, subtitle: "Date", coordinate: coor, color: curFish.color)
-                            self.checkpoints.append(curCheck)
-                            
-                        }
-
-                        
-                    })
-                    
-            }
-            
-            
-            HStack(){
+            return VStack {
                 
-                Button(action: {
-                    var _: [FishCheckpoint] = []
-                    var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue")
-                    
-                    
-                    print("refresh")
-                    print(self.checkpoints.count)
-                    
-                    
-                    
-                    ServerUtils.getFish(returnWith:  { response in
-                        self.checkpoints.removeAll()
-                        let fishSet:DataSet = response
-                        _ = self.checkpoints.count
-                        print(fishSet.fish.count)
+                
+                
+                MapViewAdvance(checkpoints: $checkpoints)
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear() {
+                        var _: [FishCheckpoint] = []
+                        var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                        var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
                         
-                        _ = fishSet.fish.count
-                        var curFish:SingleFish
                         
-                        for fish in fishSet.fish {
-                            print("Here")
-                            curFish = fish
-                            coor.latitude = curFish.latitude
-                            coor.longitude = curFish.longitude
-                            curCheck = FishCheckpoint(title: "Kind", subtitle: "Date", coordinate: coor, color: curFish.color)
+                        print("refresh")
+                        print(self.checkpoints.count)
+                        
+                        
+                        
+                        ServerUtils.getFish(returnWith:  { response in
+                            self.checkpoints.removeAll()
+                            let fishSet:DataSet = response
+                            _ = self.checkpoints.count
+                            print(fishSet.fish.count)
                             
-                            self.checkpoints.append(curCheck)
-                        }
-
+                            _ = fishSet.fish.count
+                            var curFish:SingleFish
+                            
+                            for fish in fishSet.fish {
+                                print("Here")
+                                curFish = fish
+                                coor.latitude = curFish.latitude
+                                coor.longitude = curFish.longitude
+                                curCheck = FishCheckpoint(title: curFish.type, subtitle: curFish.date, coordinate: coor, color: curFish.color, size: curFish.size)
+                                print(curFish.date + curFish.color)
+                                
+                                self.checkpoints.append(curCheck)
+                            }
+                            
+                            
+                            
+                        })
                         
-                        
-                    })
-                }) {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.title)
-                        .foregroundColor(.white)
-                    .font(.system(size: 40))
                 }
                 
                 
-                Button(action: {
+                HStack(){
                     
-                    let coordinate = self.locationManager.location != nil ?
-                        self.locationManager.location!.coordinate :
-                        CLLocationCoordinate2D()
+                    Button(action: {
+                        var _: [FishCheckpoint] = []
+                        var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                        var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
+                        
+                        
+                        print("refresh")
+                        print(self.checkpoints.count)
+                        
+                        
+                        
+                        ServerUtils.getFish(returnWith:  { response in
+                            self.checkpoints.removeAll()
+                            let fishSet:DataSet = response
+                            _ = self.checkpoints.count
+                            print(fishSet.fish.count)
+                            
+                            _ = fishSet.fish.count
+                            var curFish:SingleFish
+                            
+                            for fish in fishSet.fish {
+                                print("Here")
+                                curFish = fish
+                                coor.latitude = curFish.latitude
+                                coor.longitude = curFish.longitude
+                                curCheck = FishCheckpoint(title: curFish.type, subtitle: curFish.date, coordinate: coor, color: curFish.color, size: curFish.size)
+                                print(curFish.date + curFish.color)
+                                
+                                self.checkpoints.append(curCheck)
+                            }
+                            
+                            
+                            
+                        })
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .font(.system(size: 40))
+                    }
                     
-                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: "Walleye", fishSize: "Huge", fishColor: "Blue")
-                    print("ok")
                     
-                    print("Added")
-                }) {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .foregroundColor(.white)
-                    .font(.system(size: 40))
+                    Button(action: {
+                        
+                        let coordinate = self.locationManager.location != nil ?
+                            self.locationManager.location!.coordinate :
+                            CLLocationCoordinate2D()
+                        
+                        ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: "Walleye", fishSize: "Huge", fishColor: "Blue")
+                        print("ok")
+                        
+                        print("Added")
+                    }) {
+                        Image(systemName: "plus")
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .font(.system(size: 40))
+                        
+                        
+                    }
+                    .padding(.horizontal, (screenWidth/2) - 90)
                     
                     
-                }
-                .padding(.horizontal, (screenWidth/2) - 90)
-               
-                
-                NavigationLink(destination: NewFishView()) {
-                              Image(systemName: "umbrella.fill")
+                    NavigationLink(destination: NewFishView()) {
+                        Image(systemName: "umbrella.fill")
                     }.foregroundColor(.white)
-                .font(.system(size: 35))
+                        .font(.system(size: 35))
+                    
+                }.padding(.top).edgesIgnoringSafeArea(.bottom).statusBar(hidden: true)
                 
-            }.padding(.top).edgesIgnoringSafeArea(.bottom)
+                
+                
+                
+                
+                
+            }
+            .padding(.bottom, 35.0)
+            .background(Color.init(red: 38/255, green: 138/255, blue: 255/255))
+            .edgesIgnoringSafeArea(.bottom)
             
-            
-            
-          
-            
-            
-        }
-        .padding(.bottom, 35.0)
-        .background(Color.init(red: 38/255, green: 138/255, blue: 255/255))
-        .edgesIgnoringSafeArea(.bottom)
+        }.navigationBarTitle("Home")
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         
-        }
+        
     }
     
     

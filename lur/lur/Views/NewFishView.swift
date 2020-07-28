@@ -40,7 +40,7 @@ struct MediumFishyToggleStyle: ToggleStyle {
             configuration.label
             Spacer()
             Image(configuration.isOn ? "SizeSelected" : "SizeSelect")
-            .resizable()
+                .resizable()
                 
                 .padding(0.0)
                 .onTapGesture { configuration.isOn.toggle() }
@@ -53,7 +53,7 @@ struct SmallFishyToggleStyle: ToggleStyle {
             configuration.label
             Spacer()
             Image(configuration.isOn ? "SizeSelected" : "SizeSelect")
-            .resizable()
+                .resizable()
                 
                 .onTapGesture { configuration.isOn.toggle() }
         }.frame(width: 110.0, height: 105.0)
@@ -72,7 +72,14 @@ struct NewFishView: View {
     @State var bigger = false
     @State var huge = false
     
+    var screenWidth  = UIScreen.main.bounds.width
+    var screenHeight = UIScreen.main.bounds.height
+    
     @ObservedObject private var locationManager = LocationManager()
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    
     
     var fish = ["Trout", "Walleye", "Sunny", "Croppie"]
     @State private var selectedFish = 0
@@ -82,100 +89,110 @@ struct NewFishView: View {
     
     var body: some View {
         
-        let on1 = Binding<Bool>(get: { self.blue }, set: { self.blue = $0; self.red = false; self.purple = false; self.yellow = false; self.green = false })
-        let on2 = Binding<Bool>(get: { self.red}, set: { self.blue = false; self.red = $0; self.purple = false; self.yellow = false; self.green = false })
-        let on3 = Binding<Bool>(get: { self.purple }, set: { self.blue = false; self.red = false; self.purple = $0; self.yellow = false; self.green = false })
-        let on4 = Binding<Bool>(get: { self.yellow }, set: { self.blue = false; self.red = false; self.purple = false; self.yellow = $0; self.green = false })
-        let on5 = Binding<Bool>(get: { self.green }, set: { self.blue = false; self.red = false; self.purple = false; self.yellow = false; self.green = $0 })
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        let onBlue = Binding<Bool>(get: { self.blue }, set: { self.blue = $0; self.red = false; self.purple = false; self.yellow = false; self.green = false })
+        let onRed = Binding<Bool>(get: { self.red}, set: { self.blue = false; self.red = $0; self.purple = false; self.yellow = false; self.green = false })
+        let onPurple = Binding<Bool>(get: { self.purple }, set: { self.blue = false; self.red = false; self.purple = $0; self.yellow = false; self.green = false })
+        let onYellow = Binding<Bool>(get: { self.yellow }, set: { self.blue = false; self.red = false; self.purple = false; self.yellow = $0; self.green = false })
+        let onGreen = Binding<Bool>(get: { self.green }, set: { self.blue = false; self.red = false; self.purple = false; self.yellow = false; self.green = $0 })
         
         
         let big1 = Binding<Bool>(get: { self.big }, set: { self.big = $0; self.bigger = false; self.huge = false})
         let big2 = Binding<Bool>(get: { self.bigger }, set: { self.big = false; self.bigger = $0; self.huge = false})
         let big3 = Binding<Bool>(get: { self.huge }, set: { self.big = false; self.bigger = false; self.huge = $0})
         
-        //        return ScrollView {
-        return VStack(spacing: 20.0){
+//                return ScrollView {
+        
+//        return NavigationView{
+            return VStack(spacing: 20.0){
+ 
             
-//            ZStack{
-//                RoundedRectangle(cornerRadius: 50)
-//                    .frame(width: 200.0, height: 75.0)
-//                    .foregroundColor(.blue)
-//
-//                Text("Add Fish")
-//                .font(.largeTitle)
-//
-//                    .foregroundColor(.white)
-//
-//
-//            }
-//            .padding(.top, 50.0)
             
+            
+            ZStack{
                 
+                Rectangle()
+                .foregroundColor(.blue)
+                .frame(width: screenWidth, height: 100)
                 
-                
+                Text("New Fish")
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .padding(.top, 40.0)
+                    
+            }
+            
+    
             
             
             ZStack{
                 
                 RoundedRectangle(cornerRadius: 50)
-                    .padding(.horizontal, 25.0)
+                    .padding(.horizontal, 0.0)
                     
                     
-                    .frame(width: 420.0)
+                    .frame(width: screenWidth-25)
                     .foregroundColor(.white)
                     .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                 
                 
-                HStack{
+                HStack(){
                     
-                    Toggle(isOn: on1) {
+                    Toggle(isOn: onRed) {
                         Text("")
                     }
                     .frame(width: -140.0, height: 0.0)
                     .labelsHidden()
-                    .padding(.horizontal, 100.0)
+                    .padding(.horizontal, 100)
                     .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.blue)
+                    .foregroundColor(.init(red: 222/255, green: 64/255, blue: 99/255))
                     
-                    Toggle(isOn: on2) {
+                    Toggle(isOn: onYellow) {
                         Text("")
                     }
                     .frame(width: -140.0, height: 0.0)
                     .labelsHidden()
-                    .padding(.horizontal, 100.0)
+                    .padding(.horizontal, 100)
                     .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.red)
+                    .foregroundColor(.init(red: 230/255, green: 149/255, blue: 74/255))
                     
-                    Toggle(isOn: on3) {
+                    Toggle(isOn: onGreen) {
                         Text("")
                     }
                     .frame(width: -140.0, height: 0.0)
                     .labelsHidden()
-                    .padding(.horizontal, 100.0)
+                    .padding(.horizontal, 100)
                     .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.purple)
+                    .foregroundColor(.init(red: 111/255, green: 208/255, blue: 95/255))
                     
-                    Toggle(isOn: on4) {
+                    Toggle(isOn: onBlue) {
                         Text("")
                     }
                     .frame(width: -140.0, height: 0.0)
                     .labelsHidden()
-                    .padding(.horizontal, 100.0)
+                    .padding(.horizontal, 100)
                     .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.init(red: 50/255, green: 133/255, blue: 254/255))
                     
-                    Toggle(isOn: on5) {
+                    
+                    Toggle(isOn: onPurple) {
                         Text("")
                     }
                     .frame(width: -140.0, height: 0.0)
                     .labelsHidden()
-                    .padding(.horizontal, 100.0)
+                    .padding(.horizontal, 100)
                     .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.green)
+                    .foregroundColor(.init(red: 146/255, green: 91/255, blue: 200/255))
+                    
+                    
+                    
+                    
                 }
                 
                 
-            }.frame(width: 420.0, height: 100.0)
+            }.frame(width: screenWidth - 25, height: 100.0)
             
             ZStack{
                 
@@ -193,7 +210,7 @@ struct NewFishView: View {
                     Toggle(isOn: big2) {
                         Text("")
                     }
-                    
+                        
                     .toggleStyle(MediumFishyToggleStyle())
                     
                     Toggle(isOn: big3) {
@@ -204,33 +221,8 @@ struct NewFishView: View {
                 .padding(.trailing, 8.0)
                 
                 
-                
-                
-                
-                
-                
-                
-                
-                
             }.padding(.vertical).frame(width: 420.0, height: 180.0)
-            
-            //            ZStack{
-            //
-            //                RoundedRectangle(cornerRadius: 50)
-            //                    .frame(width: 375.0, height: 200.0)
-            //                    .foregroundColor(.white)
-            //                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-            //
-            //                Picker(selection: $selectedSize, label: Text("")) {
-            //                    ForEach(0 ..< size.count) {
-            //                        Text(self.size[$0])
-            //                    }
-            //                }.foregroundColor(.blue)
-            //                    .labelsHidden()
-            //
-            //                    .frame(width: 200.0, height: 200.0)
-            //            }.padding(.bottom).frame(width: 420.0, height: 220.0)
-            
+
             
             ZStack{
                 
@@ -252,70 +244,123 @@ struct NewFishView: View {
                 
                 
             }.padding(.vertical).frame(width: 420.0, height: 200.0)
-            
-            //            ZStack{
-            //
-            //                RoundedRectangle(cornerRadius: 50)
-            //                    .padding()
-            //                    .frame(width: 375.0, height: 220.0)
-            //                    .foregroundColor(.white)
-            //                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-            //
-            //                            Picker(selection: $selectedFish, label: Text("")) {
-            //                                ForEach(0 ..< fish.count) {
-            //                                    Text(self.fish[$0])
-            //                                }
-            //                            }.foregroundColor(.blue)
-            //                                .labelsHidden()
-            //                                .frame(width: 200.0, height: 200.0)
-            //
-            //
-            //
-            //            }.frame(width: 375.0, height: 200.0)
+  
             
             
-            
+                HStack(spacing: 30){
+        
             Button(action: {
-                
-                
-                
-                
+
                 let coordinate = self.locationManager.location != nil ?
                     self.locationManager.location!.coordinate :
                     CLLocationCoordinate2D()
-                print(self.size[self.selectedSize])
-                print(self.fish[self.selectedFish])
-                //                    ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: 1, fishSize: 1)
-                print("ok")
+                var color:String = "blue"
+                var size:String = "Big"
                 
-                print("Added")
+                if (self.blue == true){
+                    color = "blue"
+                }
+                else if (self.red == true){
+                    color = "red"
+                }
+                else if (self.purple == true){
+                    color = "purple"
+                }
+                else if (self.yellow == true){
+                    color = "orange"
+                }
+                else if (self.green == true){
+                    color = "green"
+                }
+                else {
+                    color = "blue"
+                }
+                
+                if (self.big == true){
+                    size = "big"
+                }
+                else if (self.bigger == true){
+                    size = "bigger"
+                }
+                else if (self.huge == true){
+                    size = "huge"
+                }
+                else{
+                    size = "big"
+                }
+                
+//                print(self.fish[self.selectedFish])
+//                print(size)
+//                print(color)
+                
+                ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
+                
+
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 
                 ZStack{
-                RoundedRectangle(cornerRadius: 50)
-                                    .frame(width: 200.0, height: 75.0)
-                                    .foregroundColor(.blue)
-                
-                                Text("Add Fish")
-                                .font(.largeTitle)
-                
-                                    .foregroundColor(.white)
+                    RoundedRectangle(cornerRadius: 50)
+                        .frame(width: 200.0, height: 75.0)
+                        .foregroundColor(.blue)
+                    
+                    Text("Add Fish")
+                        .font(.largeTitle)
+                        
+                        .foregroundColor(.white)
                     
                 }
-//                Image(systemName: "plus")
-//                    .font(.title)
-//
-//
-//                    .padding()
-//                    .foregroundColor(.white)
-//                    .background(Color.blue)
-//                    .cornerRadius(40)
             }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        
+                            
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 50)
+                                    .frame(width: 75.0, height: 75.0)
+                                    .foregroundColor(.blue)
+                                
+                                Image(systemName: "trash")
+                                    .foregroundColor(.white)
+                                .font(.system(size: 35))
+                                
+                            }
+                        }
+                    }
+                    
+                
+                
+           
+                    
+                    
+                    
+               
+                
             
-        }
-        .padding(.top, -175.0)
+        }.edgesIgnoringSafeArea(.all)
+        .statusBar(hidden: true)
+        .padding(.top, 0.0
         
-        //    }
+        )
+        .navigationBarBackButtonHidden(true)
+        
+//            }
     }
     
 }

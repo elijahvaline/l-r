@@ -14,14 +14,16 @@ final class FishCheckpoint: NSObject, MKAnnotation {
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
     let color: String?
+    let size: String?
     
     init(title: String?,
          subtitle: String?,
-         coordinate: CLLocationCoordinate2D, color: String?) {
+         coordinate: CLLocationCoordinate2D, color: String?, size: String?) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
         self.color = color
+        self.size = size
     }
 }
 
