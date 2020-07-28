@@ -51,13 +51,7 @@ struct ContentView: View {
                             self.checkpoints.append(curCheck)
                             
                         }
-                        coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue")
-                        self.checkpoints.append(curCheck)
-                        
-                        coor = CLLocationCoordinate2D(latitude: 76.0, longitude: 48)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue")
-                        self.checkpoints.append(curCheck)
+
                         
                     })
                     
@@ -95,9 +89,7 @@ struct ContentView: View {
                             
                             self.checkpoints.append(curCheck)
                         }
-                        coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
-                        curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "Blue" )
-                        self.checkpoints.append(curCheck)
+
                         
                         
                     })

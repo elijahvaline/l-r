@@ -58,7 +58,8 @@ app.post('/addFish', jsonParser, function(req, response) {
     var color = req.body.color
 
     db.serialize(function() {
-        var sql =  "INSERT INTO fish (id, date, latitude, longitude, size, type) VALUES (NULL, \"" + date + "\", \"" +  latitude + "\", \"" +  longitude + "\", \"" + size + "\", \"" +  type + "\", \"" +  color + "\")";
+       
+        var sql =  "INSERT INTO fish (id, date, latitude, longitude, size, type, color) VALUES (NULL, \"" + date + "\", \"" +  latitude + "\", \"" +  longitude + "\", \"" + size + "\", \"" +  type + "\", \"" +  color + "\")";
         db.run(sql);
     });
     
