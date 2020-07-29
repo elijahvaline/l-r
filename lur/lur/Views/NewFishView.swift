@@ -9,6 +9,7 @@
 import SwiftUI
 import CoreLocation
 
+
 struct CheckboxToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
         return HStack {
@@ -78,7 +79,7 @@ struct NewFishView: View {
     @ObservedObject private var locationManager = LocationManager()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     
     
     var fish = ["Trout", "Walleye", "Sunny", "Croppie"]
@@ -103,28 +104,28 @@ struct NewFishView: View {
         let big2 = Binding<Bool>(get: { self.bigger }, set: { self.big = false; self.bigger = $0; self.huge = false})
         let big3 = Binding<Bool>(get: { self.huge }, set: { self.big = false; self.bigger = false; self.huge = $0})
         
-//                return ScrollView {
+        //                return ScrollView {
         
-//        return NavigationView{
-            return VStack(spacing: 20.0){
- 
+        //        return NavigationView{
+        return VStack(spacing: 20.0){
+            
             
             
             
             ZStack{
                 
                 Rectangle()
-                .foregroundColor(.blue)
-                .frame(width: screenWidth, height: 100)
+                    .foregroundColor(.blue)
+                    .frame(width: screenWidth, height: 100)
                 
                 Text("New Fish")
                     .foregroundColor(.white)
                     .font(.title)
                     .padding(.top, 40.0)
-                    
+                
             }
             
-    
+            
             
             
             ZStack{
@@ -222,7 +223,7 @@ struct NewFishView: View {
                 
                 
             }.padding(.vertical).frame(width: 420.0, height: 180.0)
-
+            
             
             ZStack{
                 
@@ -244,123 +245,146 @@ struct NewFishView: View {
                 
                 
             }.padding(.vertical).frame(width: 420.0, height: 200.0)
-  
             
             
-                HStack(spacing: 30){
-        
-            Button(action: {
-
-                let coordinate = self.locationManager.location != nil ?
-                    self.locationManager.location!.coordinate :
-                    CLLocationCoordinate2D()
-                var color:String = "blue"
-                var size:String = "Big"
+            
+            HStack(spacing: 30){
                 
-                if (self.blue == true){
-                    color = "blue"
-                }
-                else if (self.red == true){
-                    color = "red"
-                }
-                else if (self.purple == true){
-                    color = "purple"
-                }
-                else if (self.yellow == true){
-                    color = "orange"
-                }
-                else if (self.green == true){
-                    color = "green"
-                }
-                else {
-                    color = "blue"
-                }
-                
-                if (self.big == true){
-                    size = "big"
-                }
-                else if (self.bigger == true){
-                    size = "bigger"
-                }
-                else if (self.huge == true){
-                    size = "huge"
-                }
-                else{
-                    size = "big"
-                }
-                
-//                print(self.fish[self.selectedFish])
-//                print(size)
-//                print(color)
-                
-                ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
-                
-
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                
-                ZStack{
-                    RoundedRectangle(cornerRadius: 50)
-                        .frame(width: 200.0, height: 75.0)
-                        .foregroundColor(.blue)
+                //Add Fish
+                Button(action: {
                     
-                    Text("Add Fish")
-                        .font(.largeTitle)
+                    
+                    let coor = self.locationManager.location != nil ?
+                        self.locationManager.location!.coordinate :
+                        CLLocationCoordinate2D()
+                    var color:String = "blue"
+                    var size:String = "Big"
+                    
+                    let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
+                    let geo = CLGeocoder()
+                    var completion = CLPlacemark()
+                    
+                    geo.reverseGeocodeLocation(local) { placemarks, error in
                         
-                        .foregroundColor(.white)
-                    
-                }
-            }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        
-                            
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 50)
-                                    .frame(width: 75.0, height: 75.0)
-                                    .foregroundColor(.blue)
-                                
-                                Image(systemName: "trash")
-                                    .foregroundColor(.white)
-                                .font(.system(size: 35))
-                                
-                            }
+                        guard error == nil else {
+                            print("*** Error in \(#function): \(error!.localizedDescription)")
+                            return
                         }
+                        
+                        guard let placemark = placemarks?[0] else {
+                            print("*** Error in \(#function): placemark is nil")
+                            return
+                        }
+                        
+                        completion = placemark
                     }
                     
-                
-                
-           
                     
                     
+                    if (self.blue == true){
+                        color = "blue"
+                    }
+                    else if (self.red == true){
+                        color = "red"
+                    }
+                    else if (self.purple == true){
+                        color = "purple"
+                    }
+                    else if (self.yellow == true){
+                        color = "orange"
+                    }
+                    else if (self.green == true){
+                        color = "green"
+                    }
+                    else {
+                        color = "blue"
+                    }
                     
-               
+                    if (self.big == true){
+                        size = "big"
+                    }
+                    else if (self.bigger == true){
+                        size = "bigger"
+                    }
+                    else if (self.huge == true){
+                        size = "huge"
+                    }
+                    else{
+                        size = "big"
+                    }
+                    
+                    //                print(self.fish[self.selectedFish])
+                    //                print(size)
+                    //                print(color)
+                    
+                    ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
+                    
+                    
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 50)
+                            .frame(width: 200.0, height: 75.0)
+                            .foregroundColor(.blue)
+                        
+                        Text("Add Fish")
+                            .font(.largeTitle)
+                            
+                            .foregroundColor(.white)
+                        
+                    }
+                }
                 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    
+                    
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 50)
+                            .frame(width: 75.0, height: 75.0)
+                            .foregroundColor(.blue)
+                        
+                        Image(systemName: "trash")
+                            .foregroundColor(.white)
+                            .font(.system(size: 35))
+                        
+                    }
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         }.edgesIgnoringSafeArea(.all)
-        .statusBar(hidden: true)
-        .padding(.top, 0.0
-        
+            .statusBar(hidden: true)
+            .padding(.top, 0.0
+                
         )
-        .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
         
-//            }
+        //            }
     }
     
 }
