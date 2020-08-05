@@ -62,6 +62,7 @@ struct SmallFishyToggleStyle: ToggleStyle {
 }
 
 struct NewFishView: View {
+   
     
     @State var blue:Bool = false
     @State var red:Bool = false
@@ -72,6 +73,8 @@ struct NewFishView: View {
     @State var big = false
     @State var bigger = false
     @State var huge = false
+    @State var labeler:String = "Hello There"
+    
     
     var screenWidth  = UIScreen.main.bounds.width
     var screenHeight = UIScreen.main.bounds.height
@@ -107,36 +110,38 @@ struct NewFishView: View {
         //                return ScrollView {
         
         //        return NavigationView{
-        return VStack(spacing: 20.0){
+        return VStack(alignment: .center, spacing: 20.0){
             
             
             
             
-            ZStack{
-                
-                Rectangle()
-                    .foregroundColor(.blue)
-                    .frame(width: screenWidth, height: 100)
-                
-                Text("New Fish")
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .padding(.top, 40.0)
-                
-            }
-            
-            
-            
+//            ZStack{
+//
+//                Rectangle()
+//                    .foregroundColor(.blue)
+//                    .frame(width: screenWidth, height: 100)
+//
+//                Text("New Fish")
+//                    .foregroundColor(.white)
+//                    .font(.title)
+//                    .padding(.top, 40.0)
+//
+//            }
+
             
             ZStack{
                 
                 RoundedRectangle(cornerRadius: 50)
+                .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+               
                     .padding(.horizontal, 0.0)
                     
                     
+                    
                     .frame(width: screenWidth-25)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.systemBackground))
                     .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                    
                 
                 
                 HStack(){
@@ -198,8 +203,9 @@ struct NewFishView: View {
             ZStack{
                 
                 RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
                     .frame(width: 375.0, height: 163)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.systemGray6))
                     .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                 
                 HStack(spacing:-15){
@@ -228,8 +234,9 @@ struct NewFishView: View {
             ZStack{
                 
                 RoundedRectangle(cornerRadius: 50)
+                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
                     .frame(width: 375.0, height: 200)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.systemGray6))
                     .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                 
                 
@@ -262,30 +269,20 @@ struct NewFishView: View {
                     
                     let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
                     let geo = CLGeocoder()
-                    var completion = CLPlacemark()
+                
                     
-                    geo.reverseGeocodeLocation(local) { placemarks, error in
-                        
-                        guard error == nil else {
-                            print("*** Error in \(#function): \(error!.localizedDescription)")
-                            return
-                        }
-                        
-                        guard let placemark = placemarks?[0] else {
-                            print("*** Error in \(#function): placemark is nil")
-                            return
-                        }
-                        
-                        completion = placemark
-                    }
+                    GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
+                        self.labeler = response.inlandWater ?? "Ur not in the water dumbass"
+                        })
                     
-                    
-                    
+
                     if (self.blue == true){
                         color = "blue"
+                        
                     }
                     else if (self.red == true){
                         color = "red"
+                        
                     }
                     else if (self.purple == true){
                         color = "purple"
@@ -312,81 +309,69 @@ struct NewFishView: View {
                     else{
                         size = "big"
                     }
-                    
-                    //                print(self.fish[self.selectedFish])
-                    //                print(size)
-                    //                print(color)
+
                     
                     ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
                     
-                    
+//                    print("done")
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     
                     ZStack{
-                        RoundedRectangle(cornerRadius: 50)
-                            .frame(width: 200.0, height: 75.0)
+                        
+                        
+                        Image(systemName: "plus.circle.fill")
                             .foregroundColor(.blue)
-                        
-                        Text("Add Fish")
-                            .font(.largeTitle)
-                            
-                            .foregroundColor(.white)
-                        
-                    }
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    
-                    
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 50)
-                            .frame(width: 75.0, height: 75.0)
-                            .foregroundColor(.blue)
-                        
-                        Image(systemName: "trash")
-                            .foregroundColor(.white)
-                            .font(.system(size: 35))
+                            .font(.system(size: 50))
+                           
                         
                     }
                 }
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }.edgesIgnoringSafeArea(.all)
-            .statusBar(hidden: true)
-            .padding(.top, 0.0
-                
-        )
-            .navigationBarBackButtonHidden(true)
+
+        }
+//        .edgesIgnoringSafeArea(.all)
+//            .statusBar(hidden: true)
+//            .padding(.top, 0.)
+//            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(Text("New Fish").foregroundColor(.blue))
+        .frame(minWidth: 0,
+        maxWidth: .infinity,
+        minHeight: 0,
+        maxHeight: .infinity,
+        alignment: .topLeading)
+        
         
         //            }
     }
     
+}
+
+
+class GeocodeManager {
+
+    static func getLocation(Longitude: Double, Latitude: Double, returnWith: @escaping (CLPlacemark)->()) {
+        var locationManager = LocationManager()
+        var geocoder = CLGeocoder()
+        let coor = locationManager.location != nil ?
+        locationManager.location!.coordinate :
+        CLLocationCoordinate2D()
+     
+
+        print("-> Finding user address...")
+
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: Latitude, longitude: Longitude), completionHandler: {(placemarks, error)->Void in
+            var placemark:CLPlacemark!
+
+            if error == nil && placemarks!.count > 0 {
+                placemark = placemarks![0] as CLPlacemark
+                returnWith(placemark)
+                
+            }
+            
+            
+        })
+    }
 }
 
 struct NewFishView_Previews: PreviewProvider {

@@ -18,6 +18,14 @@ struct ContentView: View {
     @State var checkpoints: [FishCheckpoint] = []
     @State var emptyCheckpoints: [FishCheckpoint] = []
     @State var serverResponse = "hello"
+    
+    //filter states
+    @State var location = "local"
+    @State var date = "all"
+    @State var size = "all"
+    @State var type = "walleye"
+    
+    
     @ObservedObject private var locationManager = LocationManager()
     let fishy:Color = Color(red: 39/255, green: 113/255, blue: 255/255)
     
@@ -34,6 +42,12 @@ struct ContentView: View {
                 MapViewAdvance(checkpoints: $checkpoints)
                     .edgesIgnoringSafeArea(.all)
                     .onAppear() {
+                        
+                        print(self.location)
+                        print(self.size)
+                        print(self.date)
+                        print(self.type)
+                        
                         var _: [FishCheckpoint] = []
                         var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
                         var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
@@ -64,9 +78,13 @@ struct ContentView: View {
                                 self.checkpoints.append(curCheck)
                             }
                             
-                            
+                            coor = CLLocationCoordinate2D(latitude: 78.0, longitude: 50.3)
+                            curCheck = FishCheckpoint(title: "Fake Annotation", subtitle: "Test Again", coordinate: coor, color: "blue", size: "huge")
+                            self.checkpoints.append(curCheck)
                             
                         })
+                        
+                        
                         
                 }
                 
@@ -112,27 +130,17 @@ struct ContentView: View {
                             .font(.title)
                             .foregroundColor(.white)
                             .font(.system(size: 40))
-                    }
-                    
-                    
-                    Button(action: {
-                        
-                        let coordinate = self.locationManager.location != nil ?
-                            self.locationManager.location!.coordinate :
-                            CLLocationCoordinate2D()
-                        
-                        ServerUtils.addFish(fishLatitude: coordinate.latitude, fishLongitude: coordinate.longitude, fishType: "Walleye", fishSize: "Huge", fishColor: "Blue")
-                        print("ok")
-                        
-                        print("Added")
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .font(.system(size: 40))
                         
                         
                     }
+                    
+                    
+                    NavigationLink(destination: FilterView(location: $location, date: $date, size: $size, type: $type)) {
+//                         NavigationLink(destination: testView()) {
+                        
+                        Image(systemName: "line.horizontal.3.decrease.circle.fill")
+                    }.foregroundColor(.white)
+                        .font(.system(size: 35))
                     .padding(.horizontal, (screenWidth/2) - 90)
                     
                     
