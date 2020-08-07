@@ -36,30 +36,47 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
         if let cluster = annotation as? MKClusterAnnotation {
             
             
-            print(cluster.memberAnnotations.count)
+            
             if (cluster.memberAnnotations.count == 2){
                 
-                let fish1 = cluster.memberAnnotations[0] as! FishCheckpoint
-                let fish2 = cluster.memberAnnotations[1] as! FishCheckpoint
+                var fish1 = cluster.memberAnnotations[0] as! FishCheckpoint
+                var fish2 = cluster.memberAnnotations[1] as! FishCheckpoint
                 
-                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                
+                var someProtocol2 = [String : Int]()
+                someProtocol2["red"] = 1
+                someProtocol2["blue"] = 2
+                someProtocol2["green"] = 3
+                someProtocol2["purple"] = 4
+                someProtocol2["orange"] = 5
+                
+                
+                
+                if (someProtocol2[fish2.color!]! > someProtocol2[fish1.color!]!) {
+                    
+                    let placeholder = fish1
+                    fish1 = fish2
+                    fish2 = placeholder
+                }
+                
                 
                 switch (fish1.color){
                 case "red":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 445, weight: .semibold))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 435, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -67,19 +84,19 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 
                 switch (fish2.color){
                 case "red":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -91,29 +108,70 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 
             else if (cluster.memberAnnotations.count == 3) {
                 
-                let fish1 = cluster.memberAnnotations[0] as! FishCheckpoint
-                let fish2 = cluster.memberAnnotations[1] as! FishCheckpoint
-                let fish3 = cluster.memberAnnotations[2] as! FishCheckpoint
+                var fish1 = cluster.memberAnnotations[0] as! FishCheckpoint
+                var fish2 = cluster.memberAnnotations[1] as! FishCheckpoint
+                var fish3 = cluster.memberAnnotations[2] as! FishCheckpoint
                 
-                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                var fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                var fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                
+                
+                
+                var someProtocol2 = [String : Int]()
+                someProtocol2["red"] = 1
+                someProtocol2["blue"] = 2
+                someProtocol2["green"] = 3
+                someProtocol2["purple"] = 4
+                someProtocol2["orange"] = 5
+                
+                
+                
+                if (someProtocol2[fish2.color!]! > someProtocol2[fish1.color!]!) {
+                    
+                    let placeholder = fish1
+                    fish1 = fish2
+                    fish2 = placeholder
+                }
+                
+                
+                
+                
+                if (someProtocol2[fish3.color!]! > someProtocol2[fish2.color!]!) {
+                    
+                    let placeholder = fish2
+                    fish2 = fish3
+                    fish3 = placeholder
+                }
+                
+                
+                
+                if (someProtocol2[fish2.color!]! > someProtocol2[fish1.color!]!) {
+                    
+                    let placeholder = fish1
+                    fish1 = fish2
+                    fish2 = placeholder
+                }
+                
+                
+                
+                
                 
                 switch (fish1.color){
                 case "red":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -121,19 +179,19 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 
                 switch (fish2.color){
                 case "red":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -141,19 +199,19 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 
                 switch (fish3.color){
                 case "red":
-                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                    fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -163,7 +221,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 annotationView.image = Merger.merge3(image1: fishAnnotation1, image2: fishAnnotation2, image3: fishAnnotation3)
                 
             }
-            
+                
             else{
                 var someProtocol = [String : Int]()
                 someProtocol["red"] = 0
@@ -202,13 +260,95 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     default:
                         break;
                     }
-
+                    
                 }
                 var first = (someProtocol.max(by: { a, b in a.value < b.value }))
                 someProtocol.removeValue(forKey: first!.key)
                 var second = (someProtocol.max(by: { a, b in a.value < b.value }))
                 someProtocol.removeValue(forKey: second!.key)
                 var third = (someProtocol.max(by: { a, b in a.value < b.value }))
+                someProtocol.removeValue(forKey: third!.key)
+                var forth = (someProtocol.max(by: { a, b in a.value < b.value }))
+                someProtocol.removeValue(forKey: forth!.key)
+                var fifth = (someProtocol.max(by: { a, b in a.value < b.value }))
+                
+                
+                
+                if (first!.value == second!.value){
+                    
+                    if (someProtocol2[second!.key]! > someProtocol2[first!.key]!) {
+                        
+                        let placeholder = first
+                        first = second
+                        second = placeholder
+                    }
+                    
+                }
+                if (second!.value == third!.value){
+                    
+                    if (someProtocol2[third!.key]! > someProtocol2[second!.key]!) {
+                        
+                        let placeholder = second
+                        second = third
+                        third = placeholder
+                    }
+                    
+                }
+                if (third!.value == forth!.value){
+                    
+                    if (someProtocol2[forth!.key]! > someProtocol2[third!.key]!) {
+                        
+                        let placeholder = third
+                        third = forth
+                        forth = placeholder
+                    }
+                    
+                }
+                if (forth!.value == fifth!.value){
+                    
+                    if (someProtocol2[fifth!.key]! > someProtocol2[forth!.key]!) {
+                        
+                        let placeholder = forth
+                        forth = fifth
+                        fifth = placeholder
+                    }
+                    
+                }
+                
+                
+                
+                
+                if (first!.value == second!.value){
+                    
+                    if (someProtocol2[second!.key]! > someProtocol2[first!.key]!) {
+                        
+                        let placeholder = first
+                        first = second
+                        second = placeholder
+                    }
+                    
+                }
+                
+                if (second!.value == third!.value){
+                    
+                    if (someProtocol2[third!.key]! > someProtocol2[second!.key]!) {
+                        
+                        let placeholder = second
+                        second = third
+                        third = placeholder
+                    }
+                    
+                }
+                if (third!.value == forth!.value){
+                    
+                    if (someProtocol2[forth!.key]! > someProtocol2[third!.key]!) {
+                        
+                        let placeholder = third
+                        third = forth
+                        forth = placeholder
+                    }
+                    
+                }
                 
                 if (first!.value == second!.value){
                     
@@ -231,52 +371,62 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     
                 }
                 
+                if (first!.value == second!.value){
+                    
+                    if (someProtocol2[second!.key]! > someProtocol2[first!.key]!) {
+                        
+                        let placeholder = first
+                        first = second
+                        second = placeholder
+                    }
+                    
+                }
                 
                 
                 
-                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                var fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                var fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                var fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                var fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                 
                 switch (first?.key){
                 case "red":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 case "blue":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 case "orange":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 case "green":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
                 }
                 if (second?.value != 0){
                     switch (second!.key){
-                case "red":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
-                    break;
-                case "blue":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
-                    break;
-                case "orange":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
-                    break;
-                case "green":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
-                    break;
-                case "purple":
-                    fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
-                    break;
-                default:
-                    break;
-                }
+                    case "red":
+                        fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
+                        break;
+                    case "blue":
+                        fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
+                        break;
+                    case "orange":
+                        fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
+                        break;
+                    case "green":
+                        fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
+                        break;
+                    case "purple":
+                        fishAnnotation2 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
+                        break;
+                    default:
+                        break;
+                    }
                 }
                 else{
                     fishAnnotation2 = fishAnnotation1
@@ -286,19 +436,19 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     
                     switch (third?.key){
                     case "red":
-                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .regular))!
+                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                         break;
                     case "blue":
-                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                         break;
                     case "orange":
-                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                         break;
                     case "green":
-                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                         break;
                     case "purple":
-                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .semibold))!
+                        fishAnnotation3 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                         break;
                     default:
                         break;
@@ -329,10 +479,10 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .medium))!
                     break;
                 case "bigger":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 30, weight: .medium))!
                     break;
                 case "huge":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .medium))!
                     break;
                 default:
                     break;
@@ -346,10 +496,10 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .regular))!
                     break;
                 case "bigger":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .regular))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular))!
                     break;
                 case "huge":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .regular))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .regular))!
                     break;
                 default:
                     break;
@@ -363,10 +513,10 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .thin))!
                     break;
                 case "bigger":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 30, weight: .thin))!
                     break;
                 case "huge":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .thin))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 default:
                     break;
@@ -380,10 +530,10 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .semibold))!
                     break;
                 case "bigger":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .semibold))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 30, weight: .semibold))!
                     break;
                 case "huge":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .semibold))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;
@@ -397,10 +547,10 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 25, weight: .light))!
                     break;
                 case "bigger":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 30, weight: .light))!
                     break;
                 case "huge":
-                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 45, weight: .light))!
+                    annotationView.image = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .light))!
                     break;
                 default:
                     break;
@@ -426,19 +576,18 @@ class Merger: UIImage {
         var bottomImage = image2
         let topImage = image1
         
-        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 35)
+        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
         bottomImage = bottomImage.applyingSymbolConfiguration(bottomConfig)!
         
         
         let size = CGSize(width: image1.size.width + 45, height: image1.size.height + 10)
         UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
         
-        print((bottomImage.size.width))
-        print((bottomImage.size.height))
-        let bottomAreaSize = CGRect(x: 60, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
+        
+        let bottomAreaSize = CGRect(x: 50, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
         bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
         
-        let topAreaSize = CGRect(x: 0, y: 10, width: (topImage.size.width), height: (topImage.size.height))
+        let topAreaSize = CGRect(x: 0, y: 8, width: (topImage.size.width), height: (topImage.size.height))
         topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
         
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -454,7 +603,7 @@ class Merger: UIImage {
         var middleImage = image3
         let topImage = image1
         
-        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 35)
+        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
         
         let middleConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 25)
         
@@ -465,17 +614,18 @@ class Merger: UIImage {
         let size = CGSize(width: image1.size.width + 45, height: image1.size.height + 25)
         UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
         
-        print((bottomImage.size.width))
-        print((bottomImage.size.height))
-        let bottomAreaSize = CGRect(x: 60, y: 15, width: (bottomImage.size.width), height: (bottomImage.size.height))
-        bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
         
-        let middleAreaSize = CGRect(x: 30, y: 0, width: (middleImage.size.width), height: (middleImage.size.height))
+        let middleAreaSize = CGRect(x: 22, y: 0, width: (middleImage.size.width), height: (middleImage.size.height))
         middleImage.draw(in: middleAreaSize, blendMode: .normal, alpha: 1)
         
+        let bottomAreaSize = CGRect(x: 50, y: 15, width: (bottomImage.size.width), height: (bottomImage.size.height))
+        bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
         
         
-        let topAreaSize = CGRect(x: 0, y: 25, width: (topImage.size.width), height: (topImage.size.height))
+        
+        
+        
+        let topAreaSize = CGRect(x: 0, y: 23, width: (topImage.size.width), height: (topImage.size.height))
         topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
         
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!

@@ -20,7 +20,7 @@ struct FilterView: View {
     
     @State private var favoriteColor = 0
     
-    var fish = ["Trout", "Walleye", "Sunny", "Croppie"]
+    var fish = ["All","Trout", "Walleye", "Sunny", "Croppie"]
     
     
     
@@ -40,7 +40,7 @@ struct FilterView: View {
                 
                 Picker(selection: $location, label: Text("What is your favorite color?")) {
                     Text("Local").tag("local")
-                    Text("Global").tag("global")
+                    Text("Global").tag("all")
                     
                 }.pickerStyle(SegmentedPickerStyle())
                 
@@ -98,7 +98,7 @@ struct FilterView: View {
                 
                 Picker(selection: $type, label: Text("")) {
                     ForEach(0 ..< fish.count) {
-                        Text(self.fish[$0]).tag(self.fish[$0].lowercased())
+                        Text(self.fish[$0]).tag(self.fish[$0])
                         
                     }
                     

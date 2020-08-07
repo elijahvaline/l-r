@@ -62,7 +62,7 @@ struct SmallFishyToggleStyle: ToggleStyle {
 }
 
 struct NewFishView: View {
-   
+    
     
     @State var blue:Bool = false
     @State var red:Bool = false
@@ -74,6 +74,7 @@ struct NewFishView: View {
     @State var bigger = false
     @State var huge = false
     @State var labeler:String = "Hello There"
+    @State private var showPopUp = false
     
     
     var screenWidth  = UIScreen.main.bounds.width
@@ -110,259 +111,306 @@ struct NewFishView: View {
         //                return ScrollView {
         
         //        return NavigationView{
-        return VStack(alignment: .center, spacing: 20.0){
+        
+        return ZStack{
             
-            
-            
-            
-//            ZStack{
-//
-//                Rectangle()
-//                    .foregroundColor(.blue)
-//                    .frame(width: screenWidth, height: 100)
-//
-//                Text("New Fish")
-//                    .foregroundColor(.white)
-//                    .font(.title)
-//                    .padding(.top, 40.0)
-//
-//            }
 
-            
-            ZStack{
-                
-                RoundedRectangle(cornerRadius: 50)
-                .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-               
-                    .padding(.horizontal, 0.0)
-                    
-                    
-                    
-                    .frame(width: screenWidth-25)
-                    .foregroundColor(Color(UIColor.systemBackground))
-                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-                    
+            VStack(alignment: .center, spacing: 20.0){
                 
                 
-                HStack(){
-                    
-                    Toggle(isOn: onRed) {
-                        Text("")
-                    }
-                    .frame(width: -140.0, height: 0.0)
-                    .labelsHidden()
-                    .padding(.horizontal, 100)
-                    .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.init(red: 222/255, green: 64/255, blue: 99/255))
-                    
-                    Toggle(isOn: onYellow) {
-                        Text("")
-                    }
-                    .frame(width: -140.0, height: 0.0)
-                    .labelsHidden()
-                    .padding(.horizontal, 100)
-                    .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.init(red: 230/255, green: 149/255, blue: 74/255))
-                    
-                    Toggle(isOn: onGreen) {
-                        Text("")
-                    }
-                    .frame(width: -140.0, height: 0.0)
-                    .labelsHidden()
-                    .padding(.horizontal, 100)
-                    .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.init(red: 111/255, green: 208/255, blue: 95/255))
-                    
-                    Toggle(isOn: onBlue) {
-                        Text("")
-                    }
-                    .frame(width: -140.0, height: 0.0)
-                    .labelsHidden()
-                    .padding(.horizontal, 100)
-                    .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.init(red: 50/255, green: 133/255, blue: 254/255))
-                    
-                    
-                    Toggle(isOn: onPurple) {
-                        Text("")
-                    }
-                    .frame(width: -140.0, height: 0.0)
-                    .labelsHidden()
-                    .padding(.horizontal, 100)
-                    .toggleStyle(CheckboxToggleStyle())
-                    .foregroundColor(.init(red: 146/255, green: 91/255, blue: 200/255))
-                    
-                    
-                    
-                    
-                }
                 
                 
-            }.frame(width: screenWidth - 25, height: 100.0)
-            
-            ZStack{
+                //            ZStack{
+                //
+                //                Rectangle()
+                //                    .foregroundColor(.blue)
+                //                    .frame(width: screenWidth, height: 100)
+                //
+                //                Text("New Fish")
+                //                    .foregroundColor(.white)
+                //                    .font(.title)
+                //                    .padding(.top, 40.0)
+                //
+                //            }
                 
-                RoundedRectangle(cornerRadius: 50)
-                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-                    .frame(width: 375.0, height: 163)
-                    .foregroundColor(Color(UIColor.systemGray6))
-                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                 
-                HStack(spacing:-15){
-                    Toggle(isOn: big1) {
-                        Text("")
-                    }
-                    .toggleStyle(SmallFishyToggleStyle())
+                ZStack{
                     
-                    Toggle(isOn: big2) {
-                        Text("")
-                    }
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
                         
-                    .toggleStyle(MediumFishyToggleStyle())
+                        .padding(.horizontal, 0.0)
+                        
+                        
+                        
+                        .frame(width: screenWidth-25)
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                     
-                    Toggle(isOn: big3) {
-                        Text("")
+                    
+                    
+                    HStack(){
+                        
+                        Toggle(isOn: onBlue) {
+                            Text("")
+                        }
+                        .frame(width: -140.0, height: 0.0)
+                        .labelsHidden()
+                        .padding(.horizontal, 100)
+                        .toggleStyle(CheckboxToggleStyle())
+                        .foregroundColor(.init(red: 255/255, green: 166/255, blue: 85/255))
+                        
+                        
+                        Toggle(isOn: onPurple) {
+                            Text("")
+                        }
+                        .frame(width: -140.0, height: 0.0)
+                        .labelsHidden()
+                        .padding(.horizontal, 100)
+                        .toggleStyle(CheckboxToggleStyle())
+                        .foregroundColor(.init(red: 243/255, green: 71/255, blue: 105/255))
+                        
+                        Toggle(isOn: onRed) {
+                            Text("")
+                        }
+                        .frame(width: -140.0, height: 0.0)
+                        .labelsHidden()
+                        .padding(.horizontal, 100)
+                        .toggleStyle(CheckboxToggleStyle())
+                        .foregroundColor(.init(red: 255/255, green: 118/255, blue: 186/255))
+                        
+                        Toggle(isOn: onYellow) {
+                            Text("")
+                        }
+                        .frame(width: -140.0, height: 0.0)
+                        .labelsHidden()
+                        .padding(.horizontal, 100)
+                        .toggleStyle(CheckboxToggleStyle())
+                        .foregroundColor(.init(red: 185/255, green: 108/255, blue: 254/255))
+                        
+                        
+                        
+                        
+                        Toggle(isOn: onGreen) {
+                            Text("")
+                        }
+                        .frame(width: -140.0, height: 0.0)
+                        .labelsHidden()
+                        .padding(.horizontal, 100)
+                        .toggleStyle(CheckboxToggleStyle())
+                        .foregroundColor(.init(red: 50/255, green: 134/255, blue: 254/255))
+                        
+                        
+                        
                     }
-                    .toggleStyle(FishyToggleStyle())
-                }
-                .padding(.trailing, 8.0)
+                    
+                    
+                }.frame(width: screenWidth - 25, height: 100.0)
                 
-                
-            }.padding(.vertical).frame(width: 420.0, height: 180.0)
-            
-            
-            ZStack{
-                
-                RoundedRectangle(cornerRadius: 50)
-                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-                    .frame(width: 375.0, height: 200)
-                    .foregroundColor(Color(UIColor.systemGray6))
-                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-                
-                
-                Picker(selection: $selectedFish, label: Text("")) {
-                    ForEach(0 ..< fish.count) {
-                        Text(self.fish[$0])
+                ZStack{
+                    
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+                        .frame(width: 375.0, height: 163)
+                        .foregroundColor(Color(UIColor.systemGray6))
+                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                    
+                    HStack(spacing:-15){
+                        Toggle(isOn: big1) {
+                            Text("")
+                        }
+                        .toggleStyle(SmallFishyToggleStyle())
+                        
+                        Toggle(isOn: big2) {
+                            Text("")
+                        }
+                            
+                        .toggleStyle(MediumFishyToggleStyle())
+                        
+                        Toggle(isOn: big3) {
+                            Text("")
+                        }
+                        .toggleStyle(FishyToggleStyle())
                     }
-                }.foregroundColor(.blue)
-                    .labelsHidden()
-                    .frame(width: 200.0, height: 200.0)
-                
-                
-                
-                
-            }.padding(.vertical).frame(width: 420.0, height: 200.0)
-            
-            
-            
-            HStack(spacing: 30){
-                
-                //Add Fish
-                Button(action: {
+                    .padding(.trailing, 8.0)
                     
                     
-                    let coor = self.locationManager.location != nil ?
-                        self.locationManager.location!.coordinate :
-                        CLLocationCoordinate2D()
-                    var color:String = "blue"
-                    var size:String = "Big"
-                    
-                    let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
-                    let geo = CLGeocoder()
+                }.padding(.vertical).frame(width: 420.0, height: 180.0)
                 
+                
+                ZStack{
                     
-                    GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
-                        self.labeler = response.inlandWater ?? "Ur not in the water dumbass"
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+                        .frame(width: 375.0, height: 200)
+                        .foregroundColor(Color(UIColor.systemGray6))
+                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                    
+                    
+                    Picker(selection: $selectedFish, label: Text("")) {
+                        ForEach(0 ..< fish.count) {
+                            Text(self.fish[$0])
+                        }
+                    }.foregroundColor(.blue)
+                        .labelsHidden()
+                        .frame(width: 200.0, height: 200.0)
+                    
+                    
+                    
+                    
+                }.padding(.vertical).frame(width: 420.0, height: 200.0)
+                
+                
+                
+                HStack(spacing: 30){
+                    
+                    //Add Fish
+                    Button(action: {
+                        
+                        
+                        let coor = self.locationManager.location != nil ?
+                            self.locationManager.location!.coordinate :
+                            CLLocationCoordinate2D()
+                        var color:String = "blue"
+                        var size:String = "Big"
+                        
+                        let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
+                        let geo = CLGeocoder()
+                        
+                        if (self.blue == true){
+                            color = "blue"
+                            
+                        }
+                        else if (self.red == true){
+                            color = "red"
+                            
+                        }
+                        else if (self.purple == true){
+                            color = "purple"
+                        }
+                        else if (self.yellow == true){
+                            color = "orange"
+                        }
+                        else if (self.green == true){
+                            color = "green"
+                        }
+                        else {
+                            color = "blue"
+                        }
+                        
+                        if (self.big == true){
+                            size = "big"
+                        }
+                        else if (self.bigger == true){
+                            size = "bigger"
+                        }
+                        else if (self.huge == true){
+                            size = "huge"
+                        }
+                        else{
+                            size = "big"
+                        }
+                        
+                        GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
+                            self.labeler = response.inlandWater ?? "null"
+                            
+                            
+                            if (self.labeler == "change this") {
+                                
+                                self.showPopUp = true
+                            }
+                            else{
+                                ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
+                                
+                                                 
+                                
+                                print(self.labeler)
+                                self.presentationMode.wrappedValue.dismiss()
+                                
+                            }
                         })
-                    
-
-                    if (self.blue == true){
-                        color = "blue"
-                        
-                    }
-                    else if (self.red == true){
-                        color = "red"
-                        
-                    }
-                    else if (self.purple == true){
-                        color = "purple"
-                    }
-                    else if (self.yellow == true){
-                        color = "orange"
-                    }
-                    else if (self.green == true){
-                        color = "green"
-                    }
-                    else {
-                        color = "blue"
-                    }
-                    
-                    if (self.big == true){
-                        size = "big"
-                    }
-                    else if (self.bigger == true){
-                        size = "bigger"
-                    }
-                    else if (self.huge == true){
-                        size = "huge"
-                    }
-                    else{
-                        size = "big"
-                    }
-
-                    
-                    ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
-                    
-//                    print("done")
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    
-                    ZStack{
                         
                         
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.blue)
-                            .font(.system(size: 50))
-                           
                         
+                        
+                        
+                        
+                        
+                    }) {
+                        
+                        ZStack{
+                            
+                            
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 50))
+                            
+                            
+                        }
                     }
                 }
+                
             }
-
+                //        .edgesIgnoringSafeArea(.all)
+                //            .statusBar(hidden: true)
+                //            .padding(.top, 0.)
+                //            .navigationBarBackButtonHidden(true)
+                .navigationBarTitle(Text("New Fish").foregroundColor(.blue))
+                .frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 0,
+                       maxHeight: .infinity,
+                       alignment: .topLeading)
+            
+            
+            //            }
+            
+            
+          
+            
+            if $showPopUp.wrappedValue {
+                ZStack {
+                    Color.white
+                    VStack {
+                        Text("Ope! Looks like you're on land")
+                        Spacer()
+                        Button(action: {
+                            self.showPopUp = false
+                        }, label: {
+                            Text("Close")
+                        })
+                    }.padding()
+                }
+                .frame(width: 300, height: 200)
+                .cornerRadius(20).shadow(radius: 20)
+            }
+            
+            
+            
+            
+            
         }
-//        .edgesIgnoringSafeArea(.all)
-//            .statusBar(hidden: true)
-//            .padding(.top, 0.)
-//            .navigationBarBackButtonHidden(true)
-            .navigationBarTitle(Text("New Fish").foregroundColor(.blue))
-        .frame(minWidth: 0,
-        maxWidth: .infinity,
-        minHeight: 0,
-        maxHeight: .infinity,
-        alignment: .topLeading)
         
-        
-        //            }
     }
     
 }
 
 
 class GeocodeManager {
-
+    
     static func getLocation(Longitude: Double, Latitude: Double, returnWith: @escaping (CLPlacemark)->()) {
         var locationManager = LocationManager()
         var geocoder = CLGeocoder()
         let coor = locationManager.location != nil ?
-        locationManager.location!.coordinate :
-        CLLocationCoordinate2D()
-     
-
-        print("-> Finding user address...")
-
+            locationManager.location!.coordinate :
+            CLLocationCoordinate2D()
+        
+        
+       
+        
         geocoder.reverseGeocodeLocation(CLLocation(latitude: Latitude, longitude: Longitude), completionHandler: {(placemarks, error)->Void in
             var placemark:CLPlacemark!
-
+            
             if error == nil && placemarks!.count > 0 {
                 placemark = placemarks![0] as CLPlacemark
                 returnWith(placemark)

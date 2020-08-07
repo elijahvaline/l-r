@@ -25,7 +25,7 @@ struct DataSet: Decodable {
 
 struct SingleFish: Decodable{
     let id: Int
-    let date: String
+    let date: Double
     let latitude: Double
     let longitude: Double
     let size: String
@@ -37,9 +37,9 @@ class ServerUtils {
     //pi
 //        static let serverUrl = "http://192.168.86.24:8081";
     //mac
-//    static let serverUrl = "http://192.168.86.36:8081";
+    static let serverUrl = "http://192.168.86.45:8081";
     
-    static let serverUrl = "http://96.2.29.165:8081";
+//    static let serverUrl = "http://96.2.29.165:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
@@ -70,29 +70,30 @@ class ServerUtils {
                 
             })
             task.resume()
-        }
+         }
     }
     
-    static func getFish(returnWith: @escaping (DataSet)->()) {
+    static func getFish(latitude:Double, longitude:Double, date:String, location:String, size:String, type:String,  returnWith: @escaping (DataSet)->()) {
         
+        let today = Date()
+        let timeDouble = today.timeIntervalSince1970
         
         let session = URLSession.shared
         let decoder = JSONDecoder()
+        let half:String = String(timeDouble) + "/" + String(longitude) + "/" + String(latitude) + "/"
+        let otherHalf:String = date + "/" + location + "/" + size + "/" + type
+        let uString = serverUrl + "/getFish/" + half + otherHalf
         
-        
-        if let url = URL(string: serverUrl + "/getFish") {
+        if let url = URL(string: serverUrl + "/getFish/" + half + otherHalf) {
             
             
             
             let task = session.dataTask(with: url, completionHandler: { data1, response, error in
-                print("here")
                 
-                print(error)
-                print(response)
                 
                 
                 if let dataString = String(data: data1!, encoding: .utf8) {
-//                    print(dataString)
+                    print(dataString)
                     
                     do {
                         
@@ -108,7 +109,7 @@ class ServerUtils {
                 }
                 
             })
-            print("notThere")
+            
             task.resume()
             
         }
@@ -117,12 +118,13 @@ class ServerUtils {
     static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:String, fishSize:String, fishColor:String ){
         // prepare json data
         let today = Date()
+        let timeDouble = today.timeIntervalSince1970
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         
         let todaysDate:String = formatter.string(from: today)
         
-        let json: [String: Any] = ["date": todaysDate,
+        let json: [String: Any] = ["date": timeDouble,
                                    "latitude": fishLatitude,
                                    "longitude": fishLongitude,
                                    "size" : fishSize,
