@@ -9,57 +9,94 @@
 import SwiftUI
 import CoreLocation
 
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        AnyTransition.slide
+    }
+}
+
+extension UIScreen{
+   static let screenWidth = UIScreen.main.bounds.size.width
+   static let screenHeight = UIScreen.main.bounds.size.height
+   static let screenSize = UIScreen.main.bounds.size
+}
 
 struct CheckboxToggleStyle: ToggleStyle {
+    let scaleFactor:Float = 0.12
+    
+    
     func makeBody(configuration: Configuration) -> some View {
-        return HStack {
+        var sizie = Int(UIScreen.screenWidth * 0.12)
             configuration.label
-            Spacer()
-            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle.fill")
-                .resizable()
-                .frame(width: 50.0, height: 50.0)
+            return Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle.fill")
+                
+                .font(.system(size:CGFloat(sizie)))
                 .onTapGesture { configuration.isOn.toggle() }
-        }.frame(width: 50.0, height: 50.0)
-    }
+            }
 }
 
 struct FishyToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
+    let scaleFactor = 0.242
+   func makeBody(configuration: Configuration) -> some View {
+    var sizie = Int(UIScreen.screenWidth * 0.242)
         return HStack {
             configuration.label
-            Spacer()
-            Image(configuration.isOn ? "SizeSelected" : "SizeSelect")
-                .resizable()
+            
+            Image(configuration.isOn ? "FishSelected" : "FishSelected")
+                .foregroundColor(.blue)
+                .font(.system(size: CGFloat(sizie)))
+                
                 
                 .onTapGesture { configuration.isOn.toggle() }
-        }.frame(width: 160.0, height: 155.0)
+        }
     }
 }
 struct MediumFishyToggleStyle: ToggleStyle {
+    let scaleFactor = 0.205
     func makeBody(configuration: Configuration) -> some View {
+        let sizie = Int(UIScreen.screenWidth * 0.205)
         return HStack {
             configuration.label
-            Spacer()
-            Image(configuration.isOn ? "SizeSelected" : "SizeSelect")
-                .resizable()
+            
+            Image(configuration.isOn ? "FishSelected" : "FishSelected")
+                .foregroundColor(.blue)
+                .font(.system(size: CGFloat(sizie)))
                 
-                .padding(0.0)
+                
                 .onTapGesture { configuration.isOn.toggle() }
-        }.frame(width: 135.0, height: 130.0)
+        }
     }
 }
 struct SmallFishyToggleStyle: ToggleStyle {
+    let scaleFactor =  0.169
     func makeBody(configuration: Configuration) -> some View {
+        let sizie = Int(UIScreen.screenWidth * 0.169)
         return HStack {
             configuration.label
-            Spacer()
-            Image(configuration.isOn ? "SizeSelected" : "SizeSelect")
-                .resizable()
+            
+            Image(configuration.isOn ? "FishSelected" : "FishSelected")
+                .foregroundColor(.blue)
+                .font(.system(size: CGFloat(sizie)))
+                
                 
                 .onTapGesture { configuration.isOn.toggle() }
-        }.frame(width: 110.0, height: 105.0)
+        }
     }
 }
+
+class Calculator {
+   
+    static func circleSpacing(width:CGFloat) -> CGFloat {
+        var x = width * 0.12
+        var y = width - 25
+        var z = y - (x * 5)
+        return z/6
+    }
+    
+}
+
+
+
 
 struct NewFishView: View {
     
@@ -75,7 +112,18 @@ struct NewFishView: View {
     @State var huge = false
     @State var labeler:String = "Hello There"
     @State private var showPopUp = false
+    @State var message = "Ope! It looks like you have location services turned off"
     
+    @Binding var checkpoints: [FishCheckpoint]
+    @Binding var location:String
+    @Binding var date:String
+    @Binding var sizie:String
+    @Binding var type:String
+    
+    @State private var showDetail = false
+    @State private var agreedToTerms = false
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var screenWidth  = UIScreen.main.bounds.width
     var screenHeight = UIScreen.main.bounds.height
@@ -93,6 +141,9 @@ struct NewFishView: View {
     @State private var selectedSize = 0
     
     var body: some View {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -114,24 +165,10 @@ struct NewFishView: View {
         
         return ZStack{
             
-
+            
             VStack(alignment: .center, spacing: 20.0){
                 
-                
-                
-                
-                //            ZStack{
-                //
-                //                Rectangle()
-                //                    .foregroundColor(.blue)
-                //                    .frame(width: screenWidth, height: 100)
-                //
-                //                Text("New Fish")
-                //                    .foregroundColor(.white)
-                //                    .font(.title)
-                //                    .padding(.top, 40.0)
-                //
-                //            }
+
                 
                 
                 ZStack{
@@ -151,7 +188,7 @@ struct NewFishView: View {
                     
                     HStack(){
                         
-                        Toggle(isOn: onBlue) {
+                        Toggle(isOn: onPurple) {
                             Text("")
                         }
                         .frame(width: -140.0, height: 0.0)
@@ -161,7 +198,7 @@ struct NewFishView: View {
                         .foregroundColor(.init(red: 255/255, green: 166/255, blue: 85/255))
                         
                         
-                        Toggle(isOn: onPurple) {
+                        Toggle(isOn: onBlue) {
                             Text("")
                         }
                         .frame(width: -140.0, height: 0.0)
@@ -170,7 +207,7 @@ struct NewFishView: View {
                         .toggleStyle(CheckboxToggleStyle())
                         .foregroundColor(.init(red: 243/255, green: 71/255, blue: 105/255))
                         
-                        Toggle(isOn: onRed) {
+                        Toggle(isOn: onGreen) {
                             Text("")
                         }
                         .frame(width: -140.0, height: 0.0)
@@ -191,7 +228,7 @@ struct NewFishView: View {
                         
                         
                         
-                        Toggle(isOn: onGreen) {
+                        Toggle(isOn: onRed) {
                             Text("")
                         }
                         .frame(width: -140.0, height: 0.0)
@@ -267,73 +304,128 @@ struct NewFishView: View {
                     //Add Fish
                     Button(action: {
                         
+                        self.agreedToTerms = true
                         
-                        let coor = self.locationManager.location != nil ?
-                            self.locationManager.location!.coordinate :
-                            CLLocationCoordinate2D()
-                        var color:String = "blue"
-                        var size:String = "Big"
-                        
-                        let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
-                        let geo = CLGeocoder()
-                        
-                        if (self.blue == true){
-                            color = "blue"
+                        withAnimation(.easeInOut(duration: 2)) {
+                            print("Hello")
+                            let coor = self.locationManager.location != nil ?
+                                self.locationManager.location!.coordinate :
+                                CLLocationCoordinate2D()
+                            var color:String = "blue"
+                            var size:String = "Big"
+                            self.showDetail.toggle()
                             
-                        }
-                        else if (self.red == true){
-                            color = "red"
+                            let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
+                            let geo = CLGeocoder()
                             
-                        }
-                        else if (self.purple == true){
-                            color = "purple"
-                        }
-                        else if (self.yellow == true){
-                            color = "orange"
-                        }
-                        else if (self.green == true){
-                            color = "green"
-                        }
-                        else {
-                            color = "blue"
-                        }
-                        
-                        if (self.big == true){
-                            size = "big"
-                        }
-                        else if (self.bigger == true){
-                            size = "bigger"
-                        }
-                        else if (self.huge == true){
-                            size = "huge"
-                        }
-                        else{
-                            size = "big"
-                        }
-                        
-                        GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
-                            self.labeler = response.inlandWater ?? "null"
-                            
-                            
-                            if (self.labeler == "change this") {
+                            if (self.blue == true){
+                                color = "blue"
                                 
-                                self.showPopUp = true
+                            }
+                            else if (self.red == true){
+                                color = "red"
+                                
+                            }
+                            else if (self.purple == true){
+                                color = "purple"
+                            }
+                            else if (self.yellow == true){
+                                color = "orange"
+                            }
+                            else if (self.green == true){
+                                color = "green"
+                            }
+                            else {
+                                color = "blue"
+                            }
+                            
+                            if (self.big == true){
+                                size = "big"
+                            }
+                            else if (self.bigger == true){
+                                size = "bigger"
+                            }
+                            else if (self.huge == true){
+                                size = "huge"
                             }
                             else{
-                                ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
-                                
-                                                 
-                                
-                                print(self.labeler)
-                                self.presentationMode.wrappedValue.dismiss()
-                                
+                                size = "big"
                             }
-                        })
-                        
-                        
-                        
-                        
-                        
+                            
+                            GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
+                                self.labeler = response.inlandWater ?? "null"
+                                
+                                
+                                if (self.labeler == "null") {
+                                    self.message = "Ope! It looks like you're too far inland"
+                                    self.showPopUp = true
+                                }
+                                else{
+                                    ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
+                                    
+                                    
+                                    
+                                    print(self.labeler)
+                                    
+                                    var _: [FishCheckpoint] = []
+                                    var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
+                                    
+                                    
+                                    let curcoor = self.locationManager.location != nil ?
+                                        self.locationManager.location!.coordinate :
+                                        CLLocationCoordinate2D()
+                                    
+                                    
+                                    
+                                    
+                                    ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.sizie, type: self.type, returnWith:  { response in
+                                        self.checkpoints.removeAll()
+                                        let fishSet:DataSet = response
+                                        
+                                        
+                                        _ = self.checkpoints.count
+                                        
+                                        
+                                        _ = fishSet.fish.count
+                                        var curFish:SingleFish
+                                        
+                                        for fish in fishSet.fish {
+                                            
+                                            curFish = fish
+                                            coor.latitude = curFish.latitude
+                                            coor.longitude = curFish.longitude
+                                            
+                                            let formatter = DateFormatter()
+                                            formatter.dateStyle = .short
+                                            let myNSDate = Date(timeIntervalSince1970: curFish.date)
+                                            let todaysDate:String = formatter.string(from: myNSDate)
+                                            
+                                            
+                                            curCheck = FishCheckpoint(title: curFish.type, subtitle: todaysDate, coordinate: coor, color: curFish.color, size: curFish.size)
+                                            
+                                            if (curFish.type != "fake"){
+                                                self.checkpoints.append(curCheck)
+                                            }
+                                            
+                                        }
+                                        
+                                        
+                                    })
+                                    
+                                    let seconds = 0.5
+                                                                 
+                                                         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                                                            self.presentationMode.wrappedValue.dismiss()
+                                                         }
+                                    
+                                }
+                            })
+                            
+                            
+                            
+                            
+                        }
                         
                         
                     }) {
@@ -342,13 +434,33 @@ struct NewFishView: View {
                             
                             
                             Image(systemName: "plus.circle.fill")
+                                
+                                
                                 .foregroundColor(.blue)
                                 .font(.system(size: 50))
+                                .rotationEffect(.degrees(showDetail ? 180 : 0))
+                                .animation(.easeInOut)
+                            
                             
                             
                         }
-                    }
+                        
+                    }.disabled(agreedToTerms)
+                    
                 }
+                
+                if $showPopUp.wrappedValue {
+                    HStack{
+                        Image(systemName: "exclamationmark.circle.fill")
+                            .foregroundColor(.red)
+                            .font(.system(size: 30))
+                        
+                        Text(self.message)
+                    }
+                    .padding(.top, 25)
+                    
+                }
+                
                 
             }
                 //        .edgesIgnoringSafeArea(.all)
@@ -364,29 +476,6 @@ struct NewFishView: View {
             
             
             //            }
-            
-            
-          
-            
-            if $showPopUp.wrappedValue {
-                ZStack {
-                    Color.white
-                    VStack {
-                        Text("Ope! Looks like you're on land")
-                        Spacer()
-                        Button(action: {
-                            self.showPopUp = false
-                        }, label: {
-                            Text("Close")
-                        })
-                    }.padding()
-                }
-                .frame(width: 300, height: 200)
-                .cornerRadius(20).shadow(radius: 20)
-            }
-            
-            
-            
             
             
         }
@@ -406,7 +495,7 @@ class GeocodeManager {
             CLLocationCoordinate2D()
         
         
-       
+        
         
         geocoder.reverseGeocodeLocation(CLLocation(latitude: Latitude, longitude: Longitude), completionHandler: {(placemarks, error)->Void in
             var placemark:CLPlacemark!
@@ -422,8 +511,9 @@ class GeocodeManager {
     }
 }
 
-struct NewFishView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewFishView()
-    }
-}
+//struct NewFishView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewFishView()
+//    }
+//}
+

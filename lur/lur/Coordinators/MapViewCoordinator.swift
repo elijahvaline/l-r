@@ -76,7 +76,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                     fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .thin))!
                     break;
                 case "purple":
-                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 435, weight: .semibold))!
+                    fishAnnotation1 = UIImage(named: "fishy.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold))!
                     break;
                 default:
                     break;

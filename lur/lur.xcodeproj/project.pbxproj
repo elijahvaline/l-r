@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B65BA94024CA464400B6A0D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65BA93F24CA464400B6A0D6 /* HomeView.swift */; };
+		B65D03AC24DDE708000F4422 /* LocationServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D03AB24DDE708000F4422 /* LocationServicesView.swift */; };
+		B65D03AE24DDF35B000F4422 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D03AD24DDF35B000F4422 /* MainView.swift */; };
+		B65D03B024DE4B32000F4422 /* Test View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65D03AF24DE4B32000F4422 /* Test View.swift */; };
 		B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66B28DD24B50D0E0002AB8A /* Fish.swift */; };
 		B6C46DCD24CF5E3F00258A9B /* NewFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C46DCC24CF5E3F00258A9B /* NewFishView.swift */; };
 		B6C79D4D24B67BFB00B8A3A9 /* FishCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		B65BA93F24CA464400B6A0D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B65BA94124CA6E3100B6A0D6 /* lur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lur.entitlements; sourceTree = "<group>"; };
+		B65D03AB24DDE708000F4422 /* LocationServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesView.swift; sourceTree = "<group>"; };
+		B65D03AD24DDF35B000F4422 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B65D03AF24DE4B32000F4422 /* Test View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test View.swift"; sourceTree = "<group>"; };
 		B66B28DD24B50D0E0002AB8A /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
 		B6C46DCC24CF5E3F00258A9B /* NewFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFishView.swift; sourceTree = "<group>"; };
 		B6C79D4C24B67BFB00B8A3A9 /* FishCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCheckpoint.swift; sourceTree = "<group>"; };
@@ -122,6 +128,9 @@
 				B6C7F59424D9EC9E00CCF7AB /* FilterView.swift */,
 				B6C7F59624DA128200CCF7AB /* testView.swift */,
 				B6CA12DF2479C8F300FE235D /* ContentView.swift */,
+				B65D03AB24DDE708000F4422 /* LocationServicesView.swift */,
+				B65D03AD24DDF35B000F4422 /* MainView.swift */,
+				B65D03AF24DE4B32000F4422 /* Test View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6C7F59524D9EC9E00CCF7AB /* FilterView.swift in Sources */,
+				B65D03AC24DDE708000F4422 /* LocationServicesView.swift in Sources */,
 				B6D769F524C686F600427672 /* MapViewAdvance.swift in Sources */,
 				B66B28DE24B50D0E0002AB8A /* Fish.swift in Sources */,
 				B6CA12D92479C8F300FE235D /* AppDelegate.swift in Sources */,
@@ -205,8 +215,10 @@
 				B6D769EB24C503C900427672 /* ServerUtils.swift in Sources */,
 				B6D769F224C686B000427672 /* MapViewCoordinator.swift in Sources */,
 				B6D769ED24C63E5400427672 /* LocationManager.swift in Sources */,
+				B65D03AE24DDF35B000F4422 /* MainView.swift in Sources */,
 				B6C7F59724DA128200CCF7AB /* testView.swift in Sources */,
 				B6C46DCD24CF5E3F00258A9B /* NewFishView.swift in Sources */,
+				B65D03B024DE4B32000F4422 /* Test View.swift in Sources */,
 				B6CA12DE2479C8F300FE235D /* lur.xcdatamodeld in Sources */,
 				B65BA94024CA464400B6A0D6 /* HomeView.swift in Sources */,
 				B6CA12E02479C8F300FE235D /* ContentView.swift in Sources */,

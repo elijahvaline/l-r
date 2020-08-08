@@ -52,7 +52,7 @@ app.get('/getFish/:userdate/:userlong/:userlat/:date/:location/:size/:type', fun
     var sqlDate = ''
     var sqlType = ''
     var sqlSize = ''
-    
+    console.log(lon + " " + lat)
     var all = true
     var and = false
     
