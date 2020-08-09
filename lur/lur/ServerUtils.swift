@@ -37,9 +37,9 @@ class ServerUtils {
     //pi
 //        static let serverUrl = "http://192.168.86.24:8081";
     //mac
-    static let serverUrl = "http://192.168.86.45:8081";
+//    static let serverUrl = "http://192.168.86.45:8081";
     
-//    static let serverUrl = "http://96.2.29.165:8081";
+    static let serverUrl = "http://96.2.29.165:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
