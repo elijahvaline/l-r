@@ -49,6 +49,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
                            case .authorizedWhenInUse:
                               // Enable your app's location features.
                               locationAllowed = true
+                               self.location =  manager.location
                               break;
                                  
                            case .authorizedAlways:
