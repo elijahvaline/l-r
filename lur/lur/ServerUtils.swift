@@ -37,9 +37,9 @@ class ServerUtils {
     //pi
 //        static let serverUrl = "http://192.168.86.24:8081";
     //mac
-    static let serverUrl = "http://192.168.86.45:8081";
+//    static let serverUrl = "http://192.168.86.45:8081";
     
-//    static let serverUrl = "http://96.2.29.165:8081";
+    static let serverUrl = "http://96.2.29.165:8081";
     
     static func getServerHelloWorld(returnWith: @escaping (String)->()) {
         let session = URLSession.shared
@@ -73,7 +73,7 @@ class ServerUtils {
          }
     }
     
-    static func getFish(latitude:Double, longitude:Double, date:String, location:String, size:String, type:String,  returnWith: @escaping (DataSet)->()) {
+    static func getFish(latitude:Double, longitude:Double, date:String, location:String, size:String, type:String,  returnWith: @escaping (DataSet?, Bool)->()) {
         
         let today = Date()
         let timeDouble = today.timeIntervalSince1970
@@ -98,14 +98,16 @@ class ServerUtils {
                     do {
                         
                         let fishSet = try decoder.decode(DataSet.self, from: Data(dataString.utf8))
-                        returnWith(fishSet)
-                        
+                        returnWith(fishSet, true)
                         
                     }
                         
                     catch let jsonError {
                         print("Error Serializing JSON", jsonError)
+                        returnWith(nil, false)
                     }
+                } else {
+                  returnWith(nil, false)
                 }
                 
             })

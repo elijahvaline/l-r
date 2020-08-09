@@ -68,9 +68,9 @@ struct ContentView: View {
                 
                 
                 
-                ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response in
+                    ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response, success in
                     self.checkpoints.removeAll()
-                    let fishSet:DataSet = response
+                    let fishSet:DataSet = response!
                     
                     
                     _ = self.checkpoints.count
@@ -119,9 +119,9 @@ struct ContentView: View {
                         
                         print("here")
                         
-                        ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response in
+                        ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response, success  in
                             self.checkpoints.removeAll()
-                            let fishSet:DataSet = response
+                            let fishSet:DataSet = response!
                             
                             
                             _ = self.checkpoints.count
@@ -233,9 +233,11 @@ struct ContentView: View {
                 
                 
                 
-                ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response in
+                ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.size, type: self.type, returnWith:  { response, succcess in
+                    
+            
                     self.checkpoints.removeAll()
-                    let fishSet:DataSet = response
+                    let fishSet:DataSet = response!
                     _ = self.checkpoints.count
                     
                     

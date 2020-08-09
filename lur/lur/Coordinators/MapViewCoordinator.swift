@@ -675,7 +675,7 @@ class Merger: UIImage {
 
 extension UIImage{
     
-    func addingShadow(blur: CGFloat = 3, shadowColor: UIColor = UIColor(white: 0, alpha: 0.2 ), offset: CGSize = CGSize(width: -1, height: -1) ) -> UIImage {
+    func addingShadow(blur: CGFloat = 3, shadowColor: UIColor = UIColor(white: 0, alpha: 0.35 ), offset: CGSize = CGSize(width: -1, height: -1) ) -> UIImage {
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: size.width + 2 * blur, height: size.height + 2 * blur), false, 2)
         let context = UIGraphicsGetCurrentContext()!
