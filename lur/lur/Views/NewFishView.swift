@@ -35,54 +35,6 @@ struct CheckboxToggleStyle: ToggleStyle {
             }
 }
 
-struct FishyToggleStyle: ToggleStyle {
-    let scaleFactor = 0.242
-   func makeBody(configuration: Configuration) -> some View {
-    var sizie = Int(UIScreen.screenWidth * 0.242)
-        return HStack {
-            configuration.label
-            
-            Image(configuration.isOn ? "FishSelected" : "FishSelected")
-                .foregroundColor(.blue)
-                .font(.system(size: CGFloat(sizie)))
-                
-                
-                .onTapGesture { configuration.isOn.toggle() }
-        }
-    }
-}
-struct MediumFishyToggleStyle: ToggleStyle {
-    let scaleFactor = 0.205
-    func makeBody(configuration: Configuration) -> some View {
-        let sizie = Int(UIScreen.screenWidth * 0.205)
-        return HStack {
-            configuration.label
-            
-            Image(configuration.isOn ? "FishSelected" : "FishSelected")
-                .foregroundColor(.blue)
-                .font(.system(size: CGFloat(sizie)))
-                
-                
-                .onTapGesture { configuration.isOn.toggle() }
-        }
-    }
-}
-struct SmallFishyToggleStyle: ToggleStyle {
-    let scaleFactor =  0.169
-    func makeBody(configuration: Configuration) -> some View {
-        let sizie = Int(UIScreen.screenWidth * 0.169)
-        return HStack {
-            configuration.label
-            
-            Image(configuration.isOn ? "FishSelected" : "FishSelected")
-                .foregroundColor(.blue)
-                .font(.system(size: CGFloat(sizie)))
-                
-                
-                .onTapGesture { configuration.isOn.toggle() }
-        }
-    }
-}
 
 class Calculator {
    
@@ -120,13 +72,17 @@ struct NewFishView: View {
     @Binding var sizie:String
     @Binding var type:String
     
+    @State var angle = 0.0
+    
     @State private var showDetail = false
     @State private var agreedToTerms = false
     
     let screenSize: CGRect = UIScreen.main.bounds
+    @State var spacing = 20.0
     
     var screenWidth  = UIScreen.main.bounds.width
     var screenHeight = UIScreen.main.bounds.height
+    
     
     @ObservedObject private var locationManager = LocationManager()
     
@@ -134,7 +90,7 @@ struct NewFishView: View {
     
     
     
-    var fish = ["Trout", "Walleye", "Sunny", "Croppie"]
+    var fish = ["Atlantic Salmon","Bluefish","Blue Catfish","Bluegill","Brook Trout","Brown Trout","Carp","Chain Pickerel","Channel Catfish","Chinook Salmon","Coho Salmon","Crappie","Cutthroat Trout","Flathead Catfish","King Salmon","Lake Trout","Largemouth Bass","Muskellunge","Northern Pike","Pacific Halibut","Pink Salmon", "Redfish", "Rainbow Trout", "Redear Sunfish","Stripped Bass","Sauger", "Smallmouth Bass","Striped Bass","Sturgeon","Walleye","White Bass","Yellow Perch"]
     @State private var selectedFish = 0
     
     var size = ["Big", "Bigger", "Biggest"]
@@ -142,9 +98,11 @@ struct NewFishView: View {
     
     var body: some View {
         
+    
+        
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        
+       
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
         
@@ -163,140 +121,133 @@ struct NewFishView: View {
         
         //        return NavigationView{
         
-        return ZStack{
+        
+        
+        return ScrollView{
+           
             
-            
-            VStack(alignment: .center, spacing: 20.0){
+//            VStack(alignment: .center, spacing: CGFloat(self.spacing)){
                 
 
                 
                 
                 ZStack{
                     
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-                        
-                        .padding(.horizontal, 0.0)
-                        
-                        
-                        
-                        .frame(width: screenWidth-25)
-                        .foregroundColor(Color(UIColor.systemBackground))
-                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                                        RoundedRectangle(cornerRadius: 50)
+                                            
+                                        
+                                            .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+                    //                        .frame(width:screenWidth-25)
+                                        
+                                            .frame(width: screenWidth - 25, height: screenWidth*0.12 + (Calculator.circleSpacing(width: screenWidth)*2), alignment: .trailing)
+                                            .foregroundColor(Color(UIColor.systemBackground))
+                                            .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                     
                     
-                    
-                    HStack(){
-                        
-                        Toggle(isOn: onPurple) {
-                            Text("")
-                        }
-                        .frame(width: -140.0, height: 0.0)
-                        .labelsHidden()
-                        .padding(.horizontal, 100)
-                        .toggleStyle(CheckboxToggleStyle())
-                        .foregroundColor(.init(red: 255/255, green: 166/255, blue: 85/255))
-                        
-                        
-                        Toggle(isOn: onBlue) {
-                            Text("")
-                        }
-                        .frame(width: -140.0, height: 0.0)
-                        .labelsHidden()
-                        .padding(.horizontal, 100)
-                        .toggleStyle(CheckboxToggleStyle())
-                        .foregroundColor(.init(red: 243/255, green: 71/255, blue: 105/255))
-                        
-                        Toggle(isOn: onGreen) {
-                            Text("")
-                        }
-                        .frame(width: -140.0, height: 0.0)
-                        .labelsHidden()
-                        .padding(.horizontal, 100)
-                        .toggleStyle(CheckboxToggleStyle())
-                        .foregroundColor(.init(red: 255/255, green: 118/255, blue: 186/255))
-                        
-                        Toggle(isOn: onYellow) {
-                            Text("")
-                        }
-                        .frame(width: -140.0, height: 0.0)
-                        .labelsHidden()
-                        .padding(.horizontal, 100)
-                        .toggleStyle(CheckboxToggleStyle())
-                        .foregroundColor(.init(red: 185/255, green: 108/255, blue: 254/255))
-                        
-                        
-                        
-                        
-                        Toggle(isOn: onRed) {
-                            Text("")
-                        }
-                        .frame(width: -140.0, height: 0.0)
-                        .labelsHidden()
-                        .padding(.horizontal, 100)
-                        .toggleStyle(CheckboxToggleStyle())
-                        .foregroundColor(.init(red: 50/255, green: 134/255, blue: 254/255))
-                        
-                        
-                        
-                    }
-                    
-                    
-                }.frame(width: screenWidth - 25, height: 100.0)
-                
+                    HStack(spacing: Calculator.circleSpacing(width: screenWidth)) {
+
+                                            Toggle(isOn: onPurple) {
+                                                Text("")
+                                            }
+                                            .frame(width: screenWidth * 0.12, height: screenWidth * 0.12)
+                                            .labelsHidden()
+                                            .toggleStyle(CheckboxToggleStyle())
+                                            .foregroundColor(.init(red: 255/255, green: 166/255, blue: 85/255))
+
+
+                                            Toggle(isOn: onBlue) {
+                                                Text("")
+                                            }
+
+                                            .labelsHidden()
+                                            .toggleStyle(CheckboxToggleStyle())
+                                            .foregroundColor(.init(red: 243/255, green: 71/255, blue: 105/255))
+                    //
+                                            Toggle(isOn: onGreen) {
+                                                Text("")
+                                            }
+
+                                            .labelsHidden()
+                                            .toggleStyle(CheckboxToggleStyle())
+                                            .foregroundColor(.init(red: 255/255, green: 118/255, blue: 186/255))
+                    //
+                                            Toggle(isOn: onYellow) {
+                                                Text("")
+                                            }
+                                            .labelsHidden()
+                                            .toggleStyle(CheckboxToggleStyle())
+                                            .foregroundColor(.init(red: 185/255, green: 108/255, blue: 254/255))
+                    //
+                    //
+                    //
+                    //
+                                            Toggle(isOn: onRed) {
+                                                Text("")
+                                            }
+                                            .labelsHidden()
+                                            .toggleStyle(CheckboxToggleStyle())
+                                            .foregroundColor(.init(red: 50/255, green: 134/255, blue: 254/255))
+
+
+
+                                        }
+                    //
+                                        
+                                    }
+                .padding(.top, 20)
+            
                 ZStack{
                     
                     RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-                        .frame(width: 375.0, height: 163)
-                        .foregroundColor(Color(UIColor.systemGray6))
-                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+                    .frame(width: screenWidth-25, height: screenWidth*0.22 + 60)
+                    .foregroundColor(Color(UIColor.systemGray6))
+                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                     
-                    HStack(spacing:-15){
-                        Toggle(isOn: big1) {
-                            Text("")
+                    HStack(spacing: 0){
+                            Toggle(isOn: big1) {
+                                Text("")
+                            }
+                            .toggleStyle(SmallFishyToggleStyle())
+             
+
+                            Toggle(isOn: big2) {
+                                Text("")
+                            }
+
+                            .toggleStyle(MediumFishyToggleStyle())
+                 
+
+                            Toggle(isOn: big3) {
+                                Text("")
+                            }
+                            .toggleStyle(FishyToggleStyle())
+             
                         }
-                        .toggleStyle(SmallFishyToggleStyle())
-                        
-                        Toggle(isOn: big2) {
-                            Text("")
-                        }
-                            
-                        .toggleStyle(MediumFishyToggleStyle())
-                        
-                        Toggle(isOn: big3) {
-                            Text("")
-                        }
-                        .toggleStyle(FishyToggleStyle())
-                    }
-                    .padding(.trailing, 8.0)
-                    
-                    
-                }.padding(.vertical).frame(width: 420.0, height: 180.0)
+                }
+                .padding(.top, 20.0)
                 
                 
                 ZStack{
                     
                     RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color(UIColor.systemGray6), lineWidth: 2)
-                        .frame(width: 375.0, height: 200)
-                        .foregroundColor(Color(UIColor.systemGray6))
-                        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+                    .stroke(Color(UIColor.systemGray6), lineWidth: 2)
+                    .frame(width: screenWidth-25, height: 200)
+                    .foregroundColor(Color(UIColor.systemGray6))
+                    .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
                     
                     
                     Picker(selection: $selectedFish, label: Text("")) {
-                        ForEach(0 ..< fish.count) {
-                            Text(self.fish[$0])
-                        }
-                    }.foregroundColor(.blue)
-                        .labelsHidden()
-                        .frame(width: 200.0, height: 200.0)
+                           ForEach(0 ..< fish.count) {
+                               Text(self.fish[$0])
+                           }
+                       }.foregroundColor(.blue)
+                           .labelsHidden()
+                           .frame(width: screenWidth-50, height: 200.0)
+                }
+                .padding(.top, 20.0)
                     
                     
-                    
-                    
-                }.padding(.vertical).frame(width: 420.0, height: 200.0)
-                
                 
                 
                 HStack(spacing: 30){
@@ -304,7 +255,6 @@ struct NewFishView: View {
                     //Add Fish
                     Button(action: {
                         
-                        self.agreedToTerms = true
                         
                         withAnimation(.easeInOut(duration: 2)) {
                             print("Hello")
@@ -313,7 +263,9 @@ struct NewFishView: View {
                                 CLLocationCoordinate2D()
                             var color:String = "blue"
                             var size:String = "Big"
-                            self.showDetail.toggle()
+                            self.angle += 180.0
+                            self.showDetail = true
+//                            self.showDetail = false
                             
                             let local = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
                             let geo = CLGeocoder()
@@ -361,6 +313,8 @@ struct NewFishView: View {
                                     self.showPopUp = true
                                 }
                                 else{
+                                    self.agreedToTerms = true
+                                    
                                     ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
                                     
                                     
@@ -438,16 +392,20 @@ struct NewFishView: View {
                                 
                                 .foregroundColor(.blue)
                                 .font(.system(size: 50))
-                                .rotationEffect(.degrees(showDetail ? 180 : 0))
+//                                .rotationEffect(.degrees(showDetail ? 180 : 0))
+                                .rotationEffect(.degrees(self.angle))
+                                .padding(.top, 10)
                                 .animation(.easeInOut)
                             
                             
                             
                         }
+                        .padding(.top, 10.0)
                         
                     }.disabled(agreedToTerms)
                     
                 }
+//                .padding(20.0)
                 
                 if $showPopUp.wrappedValue {
                     HStack{
@@ -457,22 +415,39 @@ struct NewFishView: View {
                         
                         Text(self.message)
                     }
-                    .padding(.top, 25)
+                    .padding(.top, 10)
+                    .padding(.bottom, 20.0)
                     
                 }
                 
                 
+                
+
+//            }.navigationBarTitle(Text("New Fish").foregroundColor(.blue))
+        }.navigationBarTitle(Text("New Fish"), displayMode: .inline)
+        .navigationBarItems(trailing:
+        Button("Privacy") {
+            
+            let original = "https://lür.com/privacy"
+            if let encoded = original.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed){
+               let url = URL(string: encoded)
+                UIApplication.shared.open(url!)
+                
             }
+
+                
+        })
+
                 //        .edgesIgnoringSafeArea(.all)
                 //            .statusBar(hidden: true)
                 //            .padding(.top, 0.)
                 //            .navigationBarBackButtonHidden(true)
-                .navigationBarTitle(Text("New Fish").foregroundColor(.blue))
-                .frame(minWidth: 0,
-                       maxWidth: .infinity,
-                       minHeight: 0,
-                       maxHeight: .infinity,
-                       alignment: .topLeading)
+                
+//                .frame(minWidth: 0,
+//                       maxWidth: .infinity,
+//                       minHeight: 0,
+//                       maxHeight: .infinity,
+//                       alignment: .top)
             
             
             //            }
@@ -480,7 +455,7 @@ struct NewFishView: View {
             
         }
         
-    }
+//    }
     
 }
 

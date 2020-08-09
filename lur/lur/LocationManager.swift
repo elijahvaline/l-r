@@ -15,6 +15,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
  
     
     @Published var location: CLLocation? = nil
+    @Published var locationAllowed:Bool = true
     
     private let locationManager = CLLocationManager()
     
@@ -27,18 +28,41 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
         self.locationManager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthoization status: CLAuthorizationStatus, didUpdateLocations locations: [CLLocation]) {
+        
+       
+        
       guard let location = locations.last else { return }
+        
         self.location = location
     }
+    
+    func locationManager(_ manager: CLLocationManager,
+    didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+                           case .restricted, .denied:
+                              // Disable your app's location features
+                               print("Should be false")
+                              locationAllowed = false
+                              
+                              break;
+                                 
+                           case .authorizedWhenInUse:
+                              // Enable your app's location features.
+                              locationAllowed = true
+                              break;
+                                 
+                           case .authorizedAlways:
+                              // Enable or prepare your app's location features that can run any time.
+                              locationAllowed = true
+                              break;
+                                 
+                           case .notDetermined:
+                              locationAllowed = true
+                              break;
+                        }
+    }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

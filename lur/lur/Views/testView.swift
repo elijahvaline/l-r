@@ -18,6 +18,8 @@ struct testView: View {
     
     var body: some View {
         
+        
+        
         return VStack(spacing: 20) {
             
             Divider()

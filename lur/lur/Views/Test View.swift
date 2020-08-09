@@ -8,6 +8,41 @@
 
 import SwiftUI
 
+struct FishyToggleStyle: ToggleStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            
+                configuration.label
+                return Image(configuration.isOn ? "FishSelected400" : "FishSelect400")
+                    .onTapGesture { configuration.isOn.toggle() }
+            
+            
+            
+        }
+}
+struct MediumFishyToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        
+            configuration.label
+            return Image(configuration.isOn ? "FishSelected340" : "FishSelect340")
+                .onTapGesture { configuration.isOn.toggle() }
+        
+        
+        
+    }
+}
+struct SmallFishyToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        
+            configuration.label
+            return Image(configuration.isOn ? "FishSelected280" : "FishSelect280")
+                .onTapGesture { configuration.isOn.toggle() }
+        
+        
+        
+    }
+}
+
+
 struct Test_View: View {
     
     
@@ -146,26 +181,26 @@ struct Test_View: View {
                         .foregroundColor(Color(UIColor.systemGray6))
                         .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
 
-                    HStack(){
+                    HStack(spacing: -5){
                         Toggle(isOn: big1) {
                             Text("")
                         }
+//                        .frame(width: 140.0, height: 140.0)
                         .toggleStyle(SmallFishyToggleStyle())
-//
+
                         Toggle(isOn: big2) {
                             Text("")
                         }
-
                         .toggleStyle(MediumFishyToggleStyle())
-//
+
                         Toggle(isOn: big3) {
                             Text("")
                         }
                         .toggleStyle(FishyToggleStyle())
                     }
-//
-//
-//
+
+                
+
                 }
 //
 //
@@ -184,11 +219,7 @@ struct Test_View: View {
                        }
                    }.foregroundColor(.blue)
                        .labelsHidden()
-                       .frame(width: 200.0, height: 200.0)
-                   
-
-//
-//
+                       .frame(width: screenWidth-50, height: 200.0)
                 }
 //
 //
@@ -221,24 +252,24 @@ struct Test_View: View {
 //
 //
 //
-//            }
+            }
 //                //        .edgesIgnoringSafeArea(.all)
 //                //            .statusBar(hidden: true)
 //                //            .padding(.top, 0.)
 //                //            .navigationBarBackButtonHidden(true)
 //                .navigationBarTitle(Text("New Fish").foregroundColor(.blue))
-//                .frame(minWidth: 0,
-//                       maxWidth: .infinity,
-//                       minHeight: 0,
-//                       maxHeight: .infinity,
-//                       alignment: .topLeading)
+                .frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 0,
+                       maxHeight: .infinity,
+                       alignment: .top)
 //
 //
 //            //            }
 //
 //
+//        }.navigationBarTitle("Filter")
         }
-        }.navigationBarTitle("Filter")
     }
     
 }

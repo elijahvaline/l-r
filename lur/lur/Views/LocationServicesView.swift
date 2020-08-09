@@ -12,10 +12,17 @@ import CoreLocation
 
 struct LocationServicesView: View {
     @ObservedObject private var locationManager = LocationManager()
-    @Binding var locationServices:Bool
-    let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+//    @Binding var locationServices:Bool
+    let timer2 = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     var body: some View {
+        
+        
+        
         return ZStack{
+            
+            if (locationManager.locationAllowed == true){
+                ContentView()
+            }
             
             Color.blue
                            .edgesIgnoringSafeArea(.all)
@@ -39,9 +46,18 @@ struct LocationServicesView: View {
                
                 
                 HStack{
-                    Image(systemName: "exclamationmark.circle.fill")
+                    ZStack{
+                        
+                        Circle().frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            
+                        
+                        Image(systemName: "exclamationmark.circle.fill")
                         .foregroundColor(.red)
-                        .font(.system(size: 30))
+                                                .font(.system(size: 30))
+                        
+                    }
+                    
                     
                     Text("Please enable location services")
                     .foregroundColor(.white)
@@ -54,18 +70,8 @@ struct LocationServicesView: View {
                 .foregroundColor(.white)
                
                 
-            }
-            .onReceive(timer2) { time in
-                           
-                           if (self.locationManager.location == nil){
-                                                            
-                                                            self.locationServices = false
-                                                        }
-                                                        else {
-                                                            self.locationServices = true
-                                                        }
-               
-                   }
+            }.padding(.bottom, 20)
+           
             
         }
         

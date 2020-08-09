@@ -118,6 +118,7 @@ app.get('/getFish/:userdate/:userlong/:userlat/:date/:location/:size/:type', fun
         
     }
     if (type != 'All'){
+        console.log(type)
         if (and == true){
             sqlType = " AND type = '" + type + "'"
         }

@@ -238,6 +238,8 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 someProtocol2["purple"] = 4
                 someProtocol2["orange"] = 5
                 
+                var num = cluster.memberAnnotations.count
+                
                 for n in 0...cluster.memberAnnotations.count - 1{
                     var fish = cluster.memberAnnotations[n] as! FishCheckpoint
                     
@@ -460,7 +462,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 }
                 
                 
-                annotationView.image = Merger.merge3(image1: fishAnnotation1, image2: fishAnnotation2, image3: fishAnnotation3)
+                annotationView.image = Merger.mergeMas(image1: fishAnnotation1, image2: fishAnnotation2, image3: fishAnnotation3, number: num)
                 
                 
             }
@@ -562,7 +564,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate{
                 
             }
             
-            
+            annotationView.image = annotationView.image?.addingShadow(shadowColor: UIColor(white: 0, alpha: 0.1 ), offset: CGSize(width: -1, height: -1))
         }
         return annotationView
         
@@ -572,24 +574,20 @@ class Merger: UIImage {
     
     
     static func merge2(image1:UIImage, image2:UIImage) -> UIImage{
-        
-        var bottomImage = image2
-        let topImage = image1
-        
-        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
-        bottomImage = bottomImage.applyingSymbolConfiguration(bottomConfig)!
-        
-        
-        let size = CGSize(width: image1.size.width + 45, height: image1.size.height + 10)
-        UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
-        
-        
-        let bottomAreaSize = CGRect(x: 50, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
-        bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
-        
-        let topAreaSize = CGRect(x: 0, y: 8, width: (topImage.size.width), height: (topImage.size.height))
-        topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
-        
+       
+                var bottomImage = image2.addingShadow()
+                
+                var topImage = image1.addingShadow()
+
+                
+                let size = CGSize(width: image1.size.width + 20, height: image1.size.height + 15)
+                UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
+                
+                let bottomAreaSize = CGRect(x: 0, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
+                bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
+       
+                let topAreaSize = CGRect(x: 7, y: 7, width: (topImage.size.width), height: (topImage.size.height))
+                       topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
@@ -598,35 +596,72 @@ class Merger: UIImage {
     }
     
     static func merge3(image1:UIImage, image2:UIImage, image3:UIImage) -> UIImage{
+         
+                var bottomImage = image3.addingShadow()
+                var middleImage = image2.addingShadow()
+                var topImage = image1.addingShadow()
+
+                
+                let size = CGSize(width: image1.size.width + 20, height: image1.size.height + 15)
+                UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
+                
+                let bottomAreaSize = CGRect(x: 0, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
+                bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
+                
+                let middleAreaSize = CGRect(x:7, y: 7, width: (middleImage.size.width), height: (middleImage.size.height))
+                middleImage.draw(in: middleAreaSize, blendMode: .normal, alpha: 1)
+                let topAreaSize = CGRect(x: 14, y: 14, width: (topImage.size.width), height: (topImage.size.height))
+                       topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
+        var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
         
-        var bottomImage = image2
-        var middleImage = image3
-        let topImage = image1
+        return newImage
         
-        let bottomConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
+    }
+    
+    static func mergeMas(image1:UIImage, image2:UIImage, image3:UIImage, number:Int) -> UIImage{
         
-        let middleConfig:UIImage.SymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 25)
+        var spacing = 55.5
+        if (number > 9){
+            spacing = 55
+        }
+        else{
+            spacing = 55.5
+        }
         
-        middleImage = middleImage.applyingSymbolConfiguration(middleConfig)!
-        bottomImage = bottomImage.applyingSymbolConfiguration(bottomConfig)!
         
+        var bottomImage = image3.addingShadow()
+        var middleImage = image2.addingShadow()
+        var topImage = image1.addingShadow()
         
-        let size = CGSize(width: image1.size.width + 45, height: image1.size.height + 25)
+        let size = CGSize(width: image1.size.width + 20, height: image1.size.height + 15)
         UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
         
-        
-        let middleAreaSize = CGRect(x: 22, y: 0, width: (middleImage.size.width), height: (middleImage.size.height))
-        middleImage.draw(in: middleAreaSize, blendMode: .normal, alpha: 1)
-        
-        let bottomAreaSize = CGRect(x: 50, y: 15, width: (bottomImage.size.width), height: (bottomImage.size.height))
+        let bottomAreaSize = CGRect(x: 0, y: 0, width: (bottomImage.size.width), height: (bottomImage.size.height))
         bottomImage.draw(in: bottomAreaSize, blendMode: .normal, alpha: 1)
         
+        let middleAreaSize = CGRect(x:7, y: 7, width: (middleImage.size.width), height: (middleImage.size.height))
+        middleImage.draw(in: middleAreaSize, blendMode: .normal, alpha: 1)
+        let topAreaSize = CGRect(x: 14, y: 14, width: (topImage.size.width), height: (topImage.size.height))
+               topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
         
+        var circle:UIImage = UIImage(named: "circlie.fill", in: .none, with: UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))!
         
+        var text = String(number)
         
+       let font=UIFont(name: "HelveticaNeue", size: 10)!
+       let text_style=NSMutableParagraphStyle()
+       text_style.alignment=NSTextAlignment.center
+       let text_color=UIColor.white
+       let attributes=[NSAttributedString.Key.font:font, NSAttributedString.Key.paragraphStyle:text_style, NSAttributedString.Key.foregroundColor:text_color]
+
         
-        let topAreaSize = CGRect(x: 0, y: 23, width: (topImage.size.width), height: (topImage.size.height))
-        topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1)
+        let circleAreaSize = CGRect(x: 55, y: 3, width: (circle.size.width), height: (circle.size.height))
+        circle.draw(in: circleAreaSize, blendMode: .normal, alpha: 1)
+        
+        let textAreaSize = CGRect(x: CGFloat(spacing), y: 8, width: (circle.size.width), height: (circle.size.height))
+        text.draw(in: textAreaSize, withAttributes: attributes)
+        
         
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -636,6 +671,26 @@ class Merger: UIImage {
     }
     
 }
+
+
+extension UIImage{
+    
+    func addingShadow(blur: CGFloat = 3, shadowColor: UIColor = UIColor(white: 0, alpha: 0.2 ), offset: CGSize = CGSize(width: -1, height: -1) ) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: size.width + 2 * blur, height: size.height + 2 * blur), false, 2)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        context.setShadow(offset: offset, blur: blur, color: shadowColor.cgColor)
+        draw(in: CGRect(x: blur - offset.width / 2, y: blur - offset.height / 2, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+}
+
 
 
 
