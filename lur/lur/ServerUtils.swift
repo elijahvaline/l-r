@@ -85,12 +85,11 @@ class ServerUtils {
         let uString = serverUrl + "/getFish/" + half + otherHalf
         
         if let url = URL(string: serverUrl + "/getFish/" + half + otherHalf) {
-            
-            
-            
             let task = session.dataTask(with: url, completionHandler: { data1, response, error in
-                
-                
+                if (error != nil) {
+                    returnWith(nil, false)
+                    return
+                }
                 
                 if let dataString = String(data: data1!, encoding: .utf8) {
                     print(dataString)
@@ -117,7 +116,7 @@ class ServerUtils {
         }
     }
     
-    static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:String, fishSize:String, fishColor:String ){
+    static func addFish(fishLatitude:Double, fishLongitude:Double, fishType:String, fishSize:String, fishColor:String, returnWith: @escaping (Bool)->() ){
         // prepare json data
         let today = Date()
         let timeDouble = today.timeIntervalSince1970
@@ -146,6 +145,10 @@ class ServerUtils {
         request.httpBody = jsonData
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if (error != nil) {
+                returnWith(false)
+                return
+            }
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "No data")
                 return
@@ -154,6 +157,8 @@ class ServerUtils {
             if let responseJSON = responseJSON as? [String: Any] {
                 print(responseJSON)
             }
+            
+            returnWith(true)
         }
         
         task.resume()

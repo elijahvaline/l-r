@@ -96,6 +96,68 @@ struct NewFishView: View {
     var size = ["Big", "Bigger", "Biggest"]
     @State private var selectedSize = 0
     
+    
+    fileprivate func closeViewAndRefresh() {
+        print(self.labeler)
+        
+        var _: [FishCheckpoint] = []
+        var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
+        
+        
+        let curcoor = self.locationManager.location != nil ?
+            self.locationManager.location!.coordinate :
+            CLLocationCoordinate2D()
+        
+        
+        ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.sizie, type: self.type, returnWith:  { response, success in
+            if (!success) {
+                
+                // Show error UI here
+                print("OH NO IT FAILED")
+                return;
+            }
+            
+            
+            self.checkpoints.removeAll()
+            let fishSet:DataSet = response!
+            
+            _ = self.checkpoints.count
+            
+            
+            _ = fishSet.fish.count
+            var curFish:SingleFish
+            
+            for fish in fishSet.fish {
+                
+                curFish = fish
+                coor.latitude = curFish.latitude
+                coor.longitude = curFish.longitude
+                
+                let formatter = DateFormatter()
+                formatter.dateStyle = .short
+                let myNSDate = Date(timeIntervalSince1970: curFish.date)
+                let todaysDate:String = formatter.string(from: myNSDate)
+                
+                
+                curCheck = FishCheckpoint(title: curFish.type, subtitle: todaysDate, coordinate: coor, color: curFish.color, size: curFish.size)
+                
+                if (curFish.type != "fake"){
+                    self.checkpoints.append(curCheck)
+                }
+                
+            }
+            
+            
+        })
+        
+        let seconds = 0.5
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.presentationMode.wrappedValue.dismiss()
+        }
+    }
+    
     var body: some View {
         
     
@@ -304,8 +366,15 @@ struct NewFishView: View {
                                 size = "big"
                             }
                             
-                            GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response in
-                                self.labeler = response.inlandWater ?? "null"
+                            GeocodeManager.getLocation(Longitude: coor.longitude, Latitude: coor.latitude, returnWith: { response, success in
+                                if (!success) {
+                                     self.message = "Ope! I cannot connect"
+                                    self.showPopUp = true
+                                   return
+                                }
+                                
+                                self.showPopUp = false
+                                self.labeler = response!.inlandWater ?? "null"
                                 
                                 
                                 if (self.labeler == "nill") {
@@ -315,74 +384,19 @@ struct NewFishView: View {
                                 else{
                                     self.agreedToTerms = true
                                     
-                                    ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color)
-                                    
-                                    
-                                    
-                                    print(self.labeler)
-                                    
-                                    var _: [FishCheckpoint] = []
-                                    var coor:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                                    var curCheck:FishCheckpoint = FishCheckpoint(title: "First", subtitle: "First", coordinate: coor, color: "Blue", size: "huge")
-                                    
-                                    
-                                    let curcoor = self.locationManager.location != nil ?
-                                        self.locationManager.location!.coordinate :
-                                        CLLocationCoordinate2D()
-                                    
-                                    
-                                    ServerUtils.getFish(latitude: curcoor.latitude, longitude: curcoor.longitude, date: self.date, location: self.location, size: self.sizie, type: self.type, returnWith:  { response, success in
-                                        self.checkpoints.removeAll()
-                                        let fishSet:DataSet = response!
-//
-//                                        if (!success) {
-//
-//                                          self.message = "Request Failed"
-//                                          self.showPopUp = true
-//
-//                                        }
-                                        
-                                        _ = self.checkpoints.count
-                                        
-                                        
-                                        _ = fishSet.fish.count
-                                        var curFish:SingleFish
-                                        
-                                        for fish in fishSet.fish {
-                                            
-                                            curFish = fish
-                                            coor.latitude = curFish.latitude
-                                            coor.longitude = curFish.longitude
-                                            
-                                            let formatter = DateFormatter()
-                                            formatter.dateStyle = .short
-                                            let myNSDate = Date(timeIntervalSince1970: curFish.date)
-                                            let todaysDate:String = formatter.string(from: myNSDate)
-                                            
-                                            
-                                            curCheck = FishCheckpoint(title: curFish.type, subtitle: todaysDate, coordinate: coor, color: curFish.color, size: curFish.size)
-                                            
-                                            if (curFish.type != "fake"){
-                                                self.checkpoints.append(curCheck)
+                                    ServerUtils.addFish(fishLatitude: coor.latitude, fishLongitude: coor.longitude, fishType: self.fish[self.selectedFish], fishSize: size, fishColor: color, returnWith: { success in
+                                            if (!success) {
+                                                  self.message = "Ope! I cannot connect"
+                                                 self.showPopUp = true
+                                                return
+                                            } else {
+                                                self.showPopUp = false
+                                                self.closeViewAndRefresh()
                                             }
                                             
-                                        }
-                                        
-                                        
-                                    })
-                                    
-                                    let seconds = 0.5
-                                             
-                                     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                                        self.presentationMode.wrappedValue.dismiss()
-                                     }
-                                    
+                                        })
                                 }
                             })
-                            
-                            
-                            
-                            
                         }
                         
                         
@@ -466,7 +480,7 @@ struct NewFishView: View {
 
 class GeocodeManager {
     
-    static func getLocation(Longitude: Double, Latitude: Double, returnWith: @escaping (CLPlacemark)->()) {
+    static func getLocation(Longitude: Double, Latitude: Double, returnWith: @escaping (CLPlacemark?, Bool)->()) {
         var locationManager = LocationManager()
         var geocoder = CLGeocoder()
         let coor = locationManager.location != nil ?
@@ -481,8 +495,10 @@ class GeocodeManager {
             
             if error == nil && placemarks!.count > 0 {
                 placemark = placemarks![0] as CLPlacemark
-                returnWith(placemark)
+                returnWith(placemark, true)
                 
+            } else {
+                returnWith(nil, false)
             }
             
             
