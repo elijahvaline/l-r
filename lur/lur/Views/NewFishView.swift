@@ -239,7 +239,7 @@ struct NewFishView: View {
                     
                     Picker(selection: $selectedFish, label: Text("")) {
                            ForEach(0 ..< fish.count) {
-                               Text(self.fish[$0])
+                               Text(self.fish[$0]).tag(self.fish[$0].replacingOccurrences(of: " ", with: "-"))
                            }
                        }.foregroundColor(.blue)
                            .labelsHidden()
@@ -308,7 +308,7 @@ struct NewFishView: View {
                                 self.labeler = response.inlandWater ?? "null"
                                 
                                 
-                                if (self.labeler == "null") {
+                                if (self.labeler == "nill") {
                                     self.message = "Ope! It looks like you're too far inland"
                                     self.showPopUp = true
                                 }

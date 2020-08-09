@@ -30,9 +30,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthoization status: CLAuthorizationStatus, didUpdateLocations locations: [CLLocation]) {
         
-       
-        
-      guard let location = locations.last else { return }
+        guard let location = locations.last else { return }
         
         self.location = location
     }
@@ -45,7 +43,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
                               // Disable your app's location features
                                print("Should be false")
                               locationAllowed = false
-                              
+                            
                               break;
                                  
                            case .authorizedWhenInUse:
@@ -56,10 +54,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
                            case .authorizedAlways:
                               // Enable or prepare your app's location features that can run any time.
                               locationAllowed = true
+                              self.location =  manager.location
                               break;
                                  
                            case .notDetermined:
                               locationAllowed = true
+                              self.location =  manager.location
                               break;
                         }
     }
